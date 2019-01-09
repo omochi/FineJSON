@@ -56,7 +56,7 @@ extension JSON {
                 kp = kp.advanced(by: 1)
                 vp = vp.advanced(by: 1)
             }
-            self = .object(dict)
+            self = .object(JSONObject(dict))
         case yajl_t_array:
             var array = Array<JSON>()
             let yo = yajl.pointee.u.array
@@ -68,7 +68,7 @@ extension JSON {
                 
                 vp = vp.advanced(by: 1)
             }
-            self = .array(array)
+            self = .array(JSONArray(array))
         case yajl_t_true:
             self = .boolean(true)
         case yajl_t_false:
