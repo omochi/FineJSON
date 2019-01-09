@@ -1,0 +1,25 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "OrderedDictionary",
+        "repositoryURL": "https://github.com/omochi/OrderedDictionary.git",
+        "state": {
+          "branch": null,
+          "revision": "e93b1da5203537f4bd3c693f942ddde390547ff5",
+          "version": "1.0.0"
+        }
+      },
+      {
+        "package": "yajl",
+        "repositoryURL": "https://github.com/omochi/yajl-swift-build.git",
+        "state": {
+          "branch": null,
+          "revision": "6e13f4f3d70a7a745f375ed33999370142b8c7e5",
+          "version": "1.0.1"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
