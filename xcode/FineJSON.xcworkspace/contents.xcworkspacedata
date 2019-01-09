@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:../Carthage/Checkouts/yajl-swift-build/xcode/yajl.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:../Carthage/Checkouts/OrderedDictionary/xcode/OrderedDictionary.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:FineJSON.xcodeproj">
+   </FileRef>
+</Workspace>
