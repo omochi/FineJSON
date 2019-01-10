@@ -1,6 +1,6 @@
 import Foundation
 
-internal protocol CodablePrimitive {}
+internal protocol CodablePrimitive : Codable {}
 
 extension Bool : CodablePrimitive {}
 extension Int : CodablePrimitive {}

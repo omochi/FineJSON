@@ -22,7 +22,7 @@ internal struct SDContainer : SingleValueDecodingContainer {
         }
     }
     
-    func decode<X>(_ type: X.Type) throws -> X where X : CodablePrimitive, X : Decodable {
+    func decode<X>(_ type: X.Type) throws -> X where X : CodablePrimitive {
         let pd = decoder.options.primitiveDecoder
         guard let x = pd.decodePrimitive(type, from: value) else {
             let dd = "decode \(type) from json \(value.typeName) failed"

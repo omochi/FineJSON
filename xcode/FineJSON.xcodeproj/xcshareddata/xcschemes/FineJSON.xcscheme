@@ -28,7 +28,26 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "D68BB34E21E7E46900B054F1"
+               BuildableName = "FineJSONTests.xctest"
+               BlueprintName = "FineJSONTests"
+               ReferencedContainer = "container:FineJSON.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "D68BB2E021E6507600B054F1"
+            BuildableName = "FineJSON.framework"
+            BlueprintName = "FineJSON"
+            ReferencedContainer = "container:FineJSON.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>

@@ -2,17 +2,22 @@ import Foundation
 import yajl
 import OrderedDictionary
 
-public struct JSONParseError : Error {
+public struct JSONParseError : Error, CustomStringConvertible {
     public var message: String
 
     public init(message: String) {
         self.message = message
+    }
+    
+    public var description: String {
+        return message
     }
 }
 
 extension JSON {
     public static func parse(data: Data) throws -> JSON {
         var data = data
+        data.append(0)
         var errorData = Data(count: 1024)
         let errorDataCount = errorData.count
         
@@ -43,7 +48,7 @@ extension JSON {
             let str = String(utf8String: yajl.pointee.u.number.r)!
             self = .number(str)
         case yajl_t_object:
-            let dict = OrderedDictionary<String, JSON>()
+            var dict = OrderedDictionary<String, JSON>()
             let yo = yajl.pointee.u.object
             var kp = yo.keys!
             var vp = yo.values!

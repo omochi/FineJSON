@@ -18,7 +18,21 @@
 		D68BB34421E681F300B054F1 /* UDContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68BB34321E681F300B054F1 /* UDContainer.swift */; };
 		D68BB34621E6820F00B054F1 /* SDContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68BB34521E6820F00B054F1 /* SDContainer.swift */; };
 		D68BB34821E6822000B054F1 /* KDContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68BB34721E6822000B054F1 /* KDContainer.swift */; };
+		D68BB34A21E760DB00B054F1 /* JSONSerialize.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68BB34921E760DB00B054F1 /* JSONSerialize.swift */; };
+		D68BB35421E7E46900B054F1 /* FineJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D68BB2E121E6507600B054F1 /* FineJSON.framework */; };
+		D68BB35D21E7E60000B054F1 /* XCTestManifests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68BB35B21E7E60000B054F1 /* XCTestManifests.swift */; };
+		D68BB35E21E7E60000B054F1 /* DecodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68BB35C21E7E60000B054F1 /* DecodeTests.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D68BB35521E7E46900B054F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D68BB2D821E6507600B054F1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D68BB2E021E6507600B054F1;
+			remoteInfo = FineJSON;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		D68BB2E121E6507600B054F1 /* FineJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FineJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -34,6 +48,11 @@
 		D68BB34321E681F300B054F1 /* UDContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UDContainer.swift; sourceTree = "<group>"; };
 		D68BB34521E6820F00B054F1 /* SDContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SDContainer.swift; sourceTree = "<group>"; };
 		D68BB34721E6822000B054F1 /* KDContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KDContainer.swift; sourceTree = "<group>"; };
+		D68BB34921E760DB00B054F1 /* JSONSerialize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONSerialize.swift; sourceTree = "<group>"; };
+		D68BB34F21E7E46900B054F1 /* FineJSONTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FineJSONTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D68BB35321E7E46900B054F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D68BB35B21E7E60000B054F1 /* XCTestManifests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCTestManifests.swift; sourceTree = "<group>"; };
+		D68BB35C21E7E60000B054F1 /* DecodeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DecodeTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +65,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D68BB34C21E7E46900B054F1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D68BB35421E7E46900B054F1 /* FineJSON.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -53,6 +80,7 @@
 			isa = PBXGroup;
 			children = (
 				D68BB2E321E6507600B054F1 /* FineJSON */,
+				D68BB35021E7E46900B054F1 /* FineJSONTests */,
 				D68BB2E221E6507600B054F1 /* Products */,
 				D68BB2F721E6511F00B054F1 /* Frameworks */,
 			);
@@ -62,6 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				D68BB2E121E6507600B054F1 /* FineJSON.framework */,
+				D68BB34F21E7E46900B054F1 /* FineJSONTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -81,6 +110,7 @@
 				D68BB2EF21E6509700B054F1 /* FineJSONDecoder.swift */,
 				D68BB2EE21E6509700B054F1 /* JSON.swift */,
 				D68BB2ED21E6509700B054F1 /* JSONParse.swift */,
+				D68BB34921E760DB00B054F1 /* JSONSerialize.swift */,
 				D68BB2F021E6509700B054F1 /* CodablePrimitiveDecoder.swift */,
 				D68BB2F121E6509700B054F1 /* CodablePrimitive.swift */,
 				D68BB34121E666DC00B054F1 /* WeakTypingPrimitiveJSONDecoder.swift */,
@@ -99,6 +129,25 @@
 				D68BB2FA21E6511F00B054F1 /* yajl.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D68BB35021E7E46900B054F1 /* FineJSONTests */ = {
+			isa = PBXGroup;
+			children = (
+				D68BB35A21E7E4DD00B054F1 /* src */,
+				D68BB35321E7E46900B054F1 /* Info.plist */,
+			);
+			path = FineJSONTests;
+			sourceTree = "<group>";
+		};
+		D68BB35A21E7E4DD00B054F1 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				D68BB35C21E7E60000B054F1 /* DecodeTests.swift */,
+				D68BB35B21E7E60000B054F1 /* XCTestManifests.swift */,
+			);
+			name = src;
+			path = ../../Tests/FineJSONTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -132,16 +181,39 @@
 			productReference = D68BB2E121E6507600B054F1 /* FineJSON.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		D68BB34E21E7E46900B054F1 /* FineJSONTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D68BB35721E7E46900B054F1 /* Build configuration list for PBXNativeTarget "FineJSONTests" */;
+			buildPhases = (
+				D68BB34B21E7E46900B054F1 /* Sources */,
+				D68BB34C21E7E46900B054F1 /* Frameworks */,
+				D68BB34D21E7E46900B054F1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D68BB35621E7E46900B054F1 /* PBXTargetDependency */,
+			);
+			name = FineJSONTests;
+			productName = FineJSONTests;
+			productReference = D68BB34F21E7E46900B054F1 /* FineJSONTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		D68BB2D821E6507600B054F1 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 1010;
 				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = omochimetaru;
 				TargetAttributes = {
 					D68BB2E021E6507600B054F1 = {
+						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1010;
+					};
+					D68BB34E21E7E46900B054F1 = {
 						CreatedOnToolsVersion = 10.1;
 						LastSwiftMigration = 1010;
 					};
@@ -160,12 +232,20 @@
 			projectRoot = "";
 			targets = (
 				D68BB2E021E6507600B054F1 /* FineJSON */,
+				D68BB34E21E7E46900B054F1 /* FineJSONTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		D68BB2DF21E6507600B054F1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D68BB34D21E7E46900B054F1 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -185,13 +265,31 @@
 				D68BB2F521E6509700B054F1 /* CodablePrimitiveDecoder.swift in Sources */,
 				D68BB34221E666DC00B054F1 /* WeakTypingPrimitiveJSONDecoder.swift in Sources */,
 				D68BB34421E681F300B054F1 /* UDContainer.swift in Sources */,
+				D68BB34A21E760DB00B054F1 /* JSONSerialize.swift in Sources */,
 				D68BB34621E6820F00B054F1 /* SDContainer.swift in Sources */,
 				D68BB34821E6822000B054F1 /* KDContainer.swift in Sources */,
 				D68BB2F321E6509700B054F1 /* JSON.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D68BB34B21E7E46900B054F1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D68BB35D21E7E60000B054F1 /* XCTestManifests.swift in Sources */,
+				D68BB35E21E7E60000B054F1 /* DecodeTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D68BB35621E7E46900B054F1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D68BB2E021E6507600B054F1 /* FineJSON */;
+			targetProxy = D68BB35521E7E46900B054F1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		D68BB2E721E6507600B054F1 /* Debug */ = {
@@ -372,6 +470,43 @@
 			};
 			name = Release;
 		};
+		D68BB35821E7E46900B054F1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = FineJSONTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.omochimetaru.FineJSONTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
+			};
+			name = Debug;
+		};
+		D68BB35921E7E46900B054F1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = FineJSONTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.omochimetaru.FineJSONTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -389,6 +524,15 @@
 			buildConfigurations = (
 				D68BB2EA21E6507600B054F1 /* Debug */,
 				D68BB2EB21E6507600B054F1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D68BB35721E7E46900B054F1 /* Build configuration list for PBXNativeTarget "FineJSONTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D68BB35821E7E46900B054F1 /* Debug */,
+				D68BB35921E7E46900B054F1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
