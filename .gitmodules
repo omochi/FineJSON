@@ -1,0 +1,6 @@
+[submodule "Carthage/Checkouts/yajl-swift-build"]
+	path = Carthage/Checkouts/yajl-swift-build
+	url = https://github.com/omochi/yajl-swift-build.git
+[submodule "Carthage/Checkouts/OrderedDictionary"]
+	path = Carthage/Checkouts/OrderedDictionary
+	url = https://github.com/omochi/OrderedDictionary.git
