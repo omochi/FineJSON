@@ -40,7 +40,7 @@ internal struct KDContainer<Key> : KeyedDecodingContainerProtocol
         }
     }
     
-    func decode<X>(_ type: X.Type, forKey key: Key) throws -> X where X : PrimitiveValue, X : Decodable {
+    func decode<X>(_ type: X.Type, forKey key: Key) throws -> X where X : CodablePrimitive, X : Decodable {
         return try decodeElement(key: key,
                                  noKey: throwNoKeyError)
         { (d) in

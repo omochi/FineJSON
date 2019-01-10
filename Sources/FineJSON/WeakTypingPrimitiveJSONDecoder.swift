@@ -1,6 +1,6 @@
 import Foundation
 
-public class WeakTypeDecoder : PrimitiveTypeDecoder {
+public class WeakTypingPrimitiveJSONDecoder : CodablePrimitiveJSONDecoder {
     private func decodeNSNumber(from json: JSON) -> NSNumber? {
         switch json {
         case .boolean(let b):

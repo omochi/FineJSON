@@ -2,11 +2,11 @@ import Foundation
 
 public class FineJSONDecoder {
     public init() {
-        self.primitiveTypeDecoder = WeakTypeDecoder()
+        self.primitiveDecoder = WeakTypingPrimitiveJSONDecoder()
         self.userInfo = [:]
     }
     
-    public var primitiveTypeDecoder : PrimitiveTypeDecoder
+    public var primitiveDecoder : CodablePrimitiveJSONDecoder
     public var userInfo: [CodingUserInfoKey: Any]
     
     public func decode<T>(_ type: T.Type, from data: Data) throws -> T
@@ -19,18 +19,18 @@ public class FineJSONDecoder {
     public func decode<T>(_ type: T.Type, from json: JSON) throws -> T
         where T : Decodable
     {
-        let opts =  _Decoder.Options(primitiveTypeDecoder: primitiveTypeDecoder,
+        let opts =  _Decoder.Options(primitiveDecoder: primitiveDecoder,
                                      userInfo: userInfo)
         let decoder = _Decoder(json: json,
                                codingPath: [],
                                options: opts)
-        return try type.init(from: decoder)
+        return try decoder.singleValueContainer().decode(type)
     }
 }
 
 internal class _Decoder : Decoder {
     public struct Options {
-        public var primitiveTypeDecoder: PrimitiveTypeDecoder
+        public var primitiveDecoder: CodablePrimitiveJSONDecoder
         public var userInfo: [CodingUserInfoKey: Any]
     }
     

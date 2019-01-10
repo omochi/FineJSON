@@ -1,4 +1,4 @@
-public protocol PrimitiveTypeDecoder {
+public protocol CodablePrimitiveJSONDecoder {
     func decode(_ type: Bool.Type, from json: JSON) -> Bool?
     func decode(_ type: Int.Type, from json: JSON) -> Int?
     func decode(_ type: Int8.Type, from json: JSON) -> Int8?
@@ -15,8 +15,8 @@ public protocol PrimitiveTypeDecoder {
     func decode(_ type: String.Type, from json: JSON) -> String?
 }
 
-extension PrimitiveTypeDecoder {
-    internal func decodePrimitive<X: PrimitiveValue>(_ type: X.Type, from json: JSON) -> X? {
+extension CodablePrimitiveJSONDecoder {
+    internal func decodePrimitive<X: CodablePrimitive>(_ type: X.Type, from json: JSON) -> X? {
         typealias R = X?
         
         switch type {
