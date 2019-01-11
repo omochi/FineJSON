@@ -68,12 +68,17 @@ extension JSON {
         _ = withVaList([y_beautify]) { (ap) in
             yajl_gen_config_v(yg, yajl_gen_beautify, ap)
         }
-        _ = withVaList([options.indentString]) { (ap) in
-            yajl_gen_config_v(yg, yajl_gen_indent_string, ap)
+        
+        var indentString = options.indentString.utf8CString
+        
+        try indentString.withUnsafeBufferPointer { (indentString) in
+            _ = withVaList([indentString.baseAddress!]) { (ap) in
+                yajl_gen_config_v(yg, yajl_gen_indent_string, ap)
+            }
+
+            try serialize(yajl_gen: yg)
         }
         
-        try serialize(yajl_gen: yg)
-
         let result: Data
 
         do {

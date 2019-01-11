@@ -47,6 +47,10 @@ public struct JSONArray {
     
     public var value: [JSON]
     
+    public init() {
+        self.init([])
+    }
+    
     public init(_ value: [JSON]) {
         self.value = value
     }
@@ -81,8 +85,16 @@ public struct JSONObject {
     
     public var value: OrderedDictionary<String, JSON>
     
-    public init(_ value: OrderedDictionary<String, JSON>) {
+    public init() {
+        self.init(OrderedDictionary())
+    }
+    
+    public init(_ value: OrderedDictionary<String, JSON>) {        
         self.value = value
+    }
+    
+    public init(_ keyAndValues: KeyValuePairs<String, JSON>) {
+        self.init(OrderedDictionary(keyAndValues))
     }
 }
 

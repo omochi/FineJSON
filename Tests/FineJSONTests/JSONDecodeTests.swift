@@ -40,9 +40,9 @@ class JSONDecodeTests: XCTestCase {
             .array(JSONArray([])),
             .object(JSONObject(OrderedDictionary()))
             ]))
-        XCTAssertEqual(a.c, JSONObject(OrderedDictionary(uniqueKeysWithValues: [
-            ("a", .number(JSONNumber("0.123456789012345678901234567890")))
-            ])))
+        XCTAssertEqual(a.c, JSONObject([
+            "a": .number(JSONNumber("0.123456789012345678901234567890"))
+            ]))
         XCTAssertEqual(a.d, JSON.array(JSONArray([])))
         XCTAssertEqual(a.e, JSON.object(JSONObject(OrderedDictionary())))
     }
