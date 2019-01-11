@@ -91,7 +91,7 @@ internal struct KeyedEC<Key> : KeyedEncodingContainerProtocol where Key : Coding
     {
         let codingPath = self.codingPath + [key]
         
-        let jsonKey = self.encoder.jsonKey(for: key)
+        let jsonKey = self.jsonKey(for: key)
         
         let elementBox = BoxJSON(.null)
         
@@ -102,6 +102,20 @@ internal struct KeyedEC<Key> : KeyedEncodingContainerProtocol where Key : Coding
                                box: elementBox,
                                encodingType: nil)
         return try encode(encoder)
+    }
+    
+    private func jsonKey(for codingKey: CodingKey) -> String {
+        let origKey = codingKey.stringValue
+        
+        if let type = encoder.encodingType,
+            let anoType = type as? JSONAnnotatable.Type,
+            let ano = anoType.keyAnnotations[origKey],
+            let jsonKey = ano.jsonKey
+        {
+            return jsonKey
+        }
+        
+        return origKey
     }
 }
 

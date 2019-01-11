@@ -69,20 +69,6 @@ internal class _Decoder : Decoder {
     public func singleValueContainer() -> SingleValueDecodingContainer {
         return SingleDC(decoder: self, value: value)
     }
-    
-    public func jsonKey(for codingKey: CodingKey) -> String {
-        let origKey = codingKey.stringValue
-        
-        if let type = decodingType,
-            let anoType = type as? FineJSONAnnotatable.Type,
-            let ano = anoType.keyAnnotations[origKey],
-            let jsonKey = ano.jsonKey
-        {
-            return jsonKey
-        }
-        
-        return origKey
-    }
 }
 
 

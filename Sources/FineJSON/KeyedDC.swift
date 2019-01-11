@@ -29,12 +29,15 @@ internal struct KeyedDC<Key> : KeyedDecodingContainerProtocol
     }
     
     func contains(_ key: Key) -> Bool {
-        return object.value[key.stringValue] != nil
+        let origKey = key.stringValue
+        let jsonKey = self.jsonKey(for: origKey)
+        let jsonValue = self.jsonValue(for: origKey, jsonKey: jsonKey)
+        return jsonValue != nil
     }
     
     func decodeNil(forKey key: Key) throws -> Bool {
         return decodeElement(key: key,
-                             noKey: noKeyIsNil)
+                             noKeyHandler: noKeyIsNil)
         { (d) in
             return d.singleValueContainer().decodeNil()
         }
@@ -42,7 +45,7 @@ internal struct KeyedDC<Key> : KeyedDecodingContainerProtocol
     
     func decode<T>(_ type: T.Type, forKey key: Key) throws -> T where T : Decodable {
         return try decodeElement(key: key,
-                                 noKey: throwNoKeyError)
+                                 noKeyHandler: throwNoKeyError)
         { (d) in
             return try d.singleValueContainer().decode(type)
         }
@@ -53,7 +56,7 @@ internal struct KeyedDC<Key> : KeyedDecodingContainerProtocol
         where NestedKey : CodingKey
     {
         return try decodeElement(key: key,
-                                 noKey: throwNoKeyError)
+                                 noKeyHandler: throwNoKeyError)
         { (d) in
             return try d.container(keyedBy: type)
         }
@@ -61,7 +64,7 @@ internal struct KeyedDC<Key> : KeyedDecodingContainerProtocol
     
     func nestedUnkeyedContainer(forKey key: Key) throws -> UnkeyedDecodingContainer {
         return try decodeElement(key: key,
-                                 noKey: throwNoKeyError)
+                                 noKeyHandler: throwNoKeyError)
         { (d) in
             return try d.unkeyedContainer()
         }
@@ -77,22 +80,24 @@ internal struct KeyedDC<Key> : KeyedDecodingContainerProtocol
     
     func _superDecoder(forKey key: CodingKey) throws -> Decoder {
         return try decodeElement(key: key,
-                                 noKey: throwNoKeyError)
+                                 noKeyHandler: throwNoKeyError)
         { (d) in
             return d
         }
     }
     
     private func decodeElement<R>(key: CodingKey,
-                                  noKey: (CodingKey, [CodingKey]) throws -> R,
+                                  noKeyHandler: (String, [CodingKey]) throws -> R,
                                   decode: (_Decoder) throws -> R) rethrows -> R
     {
         let codingPath = self.codingPath + [key]
 
-        let jsonKey = self.decoder.jsonKey(for: key)
+        let origKey = key.stringValue
         
-        guard let elem = object.value[jsonKey] else {
-            return try noKey(key, codingPath)
+        let jsonKey = self.jsonKey(for: origKey)
+        
+        guard let elem = jsonValue(for: origKey, jsonKey: jsonKey) else {
+            return try noKeyHandler(jsonKey, codingPath)
         }
         
         let decoder = _Decoder(json: elem,
@@ -102,13 +107,47 @@ internal struct KeyedDC<Key> : KeyedDecodingContainerProtocol
         return try decode(decoder)
     }
     
-    private func noKeyIsNil(key: CodingKey, codingPath: [CodingKey]) -> Bool {
+    private func jsonKey(for originalKey: String) -> String {
+        if let ano = keyAnnotations(originalKey: originalKey),
+            let jsonKey = ano.jsonKey
+        {
+            return jsonKey
+        }
+        
+        return originalKey
+    }
+    
+    private func jsonValue(for originalKey: String, jsonKey: String) -> JSON? {
+        if let elem = object.value[jsonKey] {
+            return elem
+        }
+        
+        if let ano = keyAnnotations(originalKey: originalKey),
+            let def = ano.defaultValue
+        {
+            return def
+        }
+        
+        return nil
+    }
+    
+    private func keyAnnotations(originalKey: String) -> JSONKeyAnnotation? {
+        guard let type = decoder.decodingType,
+            let anoType = type as? JSONAnnotatable.Type,
+            let ano = anoType.keyAnnotations[originalKey] else
+        {
+            return nil
+        }
+        return ano
+    }
+    
+    private func noKeyIsNil(jsonKey: String, codingPath: [CodingKey]) -> Bool {
         return true
     }
     
-    private func throwNoKeyError<R>(key: CodingKey, codingPath: [CodingKey]) throws -> R {
-        let dd = "No value associated with key \(key.stringValue)"
+    private func throwNoKeyError<R>(jsonKey: String, codingPath: [CodingKey]) throws -> R {
+        let dd = "No value associated with key \(jsonKey)"
         let ctx = DecodingError.Context(codingPath: codingPath, debugDescription: dd)
-        throw DecodingError.keyNotFound(key, ctx)
+        throw DecodingError.keyNotFound(JSONObject.Key(jsonKey), ctx)
     }
 }

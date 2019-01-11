@@ -2,9 +2,9 @@ import XCTest
 import FineJSON
 
 class AnnotationTests: XCTestCase {
-    struct A : Codable, FineJSONAnnotatable {
-        static var keyAnnotations: [String : FineJSONKeyAnnotation] = [
-            "userName": FineJSONKeyAnnotation(jsonKey: "user_name")
+    struct A : Codable, JSONAnnotatable {
+        static var keyAnnotations: JSONKeyAnnotations = [
+            "userName": JSONKeyAnnotation(jsonKey: "user_name")
         ]
 
         var userName: String
@@ -23,6 +23,39 @@ class AnnotationTests: XCTestCase {
         XCTAssertEqual(a.userName, "taro")
         
         try assertJSON(value: a, json: json)
+    }
+    
+    struct B : Codable, JSONAnnotatable {
+        static var keyAnnotations: JSONKeyAnnotations = [
+            "a": JSONKeyAnnotation(defaultValue: .number(JSONNumber("1"))),
+            "b": JSONKeyAnnotation(defaultValue: .number(JSONNumber("2"))),
+            "c": JSONKeyAnnotation(defaultValue: .object(JSONObject([
+                "a": .number(JSONNumber("3")),
+                "b": .number(JSONNumber("4")),
+                ])))
+        ]
+        
+        var a: Int
+        var b: Int?
+        var c: C
+    }
+    
+    struct C : Codable {
+        var a: Int
+        var b: Int
+    }
+    
+    func testDefaultValue() throws {
+        let json = """
+{}
+"""
+        let data = json.data(using: .utf8)!
+        let decoder = FineJSONDecoder()
+        let a = try decoder.decode(B.self, from: data)
+        XCTAssertEqual(a.a, 1)
+        XCTAssertEqual(a.b, 2)
+        XCTAssertEqual(a.c.a, 3)
+        XCTAssertEqual(a.c.b, 4)
     }
     
     func assertJSON<T: Encodable>(value: T,
