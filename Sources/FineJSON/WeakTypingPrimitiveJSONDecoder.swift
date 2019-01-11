@@ -5,13 +5,18 @@ public class WeakTypingPrimitiveJSONDecoder : CodablePrimitiveJSONDecoder {
         switch json {
         case .boolean(let b):
             return NSNumber(value: b)
-        case .number(let str),
-             .string(let str):
-            let f = NumberFormatter()
-            return f.number(from: str)
+        case .number(let num):
+            return decodeNSNumber(string: num.value)
+        case .string(let str):
+            return decodeNSNumber(string: str)
         default:
             return nil
         }
+    }
+    
+    private func decodeNSNumber(string: String) -> NSNumber? {
+        let f = NumberFormatter()
+        return f.number(from: string)
     }
     
     public func decode(_ type: Bool.Type, from json: JSON) -> Bool? {
@@ -68,8 +73,9 @@ public class WeakTypingPrimitiveJSONDecoder : CodablePrimitiveJSONDecoder {
     
     public func decode(_ type: String.Type, from json: JSON) -> String? {
         switch json {
-        case .number(let str),
-             .string(let str):
+        case .number(let num):
+            return num.value
+        case .string(let str):
             return str
         default:
             return nil

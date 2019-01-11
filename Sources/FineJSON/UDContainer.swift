@@ -77,7 +77,7 @@ internal struct UDContainer : UnkeyedDecodingContainer {
         guard !isAtEnd else {
             let dd = "unkeyed container is at end"
             let ctx = DecodingError.Context(codingPath: codingPath, debugDescription: dd)
-            throw DecodingError.valueNotFound(JSONNull.self, ctx)
+            throw DecodingError.valueNotFound(JSON.self, ctx)
         }
         
         let elem = array.value[currentIndex]

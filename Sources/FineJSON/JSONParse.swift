@@ -46,32 +46,36 @@ extension JSON {
             self = .string(str)
         case yajl_t_number:
             let str = String(utf8String: yajl.pointee.u.number.r)!
-            self = .number(str)
+            self = .number(JSONNumber(str))
         case yajl_t_object:
             var dict = OrderedDictionary<String, JSON>()
             let yo = yajl.pointee.u.object
-            var kp = yo.keys!
-            var vp = yo.values!
-            for _ in 0..<yo.len {
-                let key = String(utf8String: kp.pointee!)!
-                let value = JSON(yajl: vp.pointee!)
-                
-                dict[key] = value
-                
-                kp = kp.advanced(by: 1)
-                vp = vp.advanced(by: 1)
+            if var kp = yo.keys,
+                var vp = yo.values
+            {
+                for _ in 0..<yo.len {
+                    let key = String(utf8String: kp.pointee!)!
+                    let value = JSON(yajl: vp.pointee!)
+                    
+                    dict[key] = value
+                    
+                    kp = kp.advanced(by: 1)
+                    vp = vp.advanced(by: 1)
+                }
             }
             self = .object(JSONObject(dict))
         case yajl_t_array:
             var array = Array<JSON>()
             let yo = yajl.pointee.u.array
-            var vp = yo.values!
-            for _ in 0..<yo.len {
-                let value = JSON(yajl: vp.pointee!)
-                
-                array.append(value)
-                
-                vp = vp.advanced(by: 1)
+            
+            if var vp = yo.values {
+                for _ in 0..<yo.len {
+                    let value = JSON(yajl: vp.pointee!)
+                    
+                    array.append(value)
+                    
+                    vp = vp.advanced(by: 1)
+                }
             }
             self = .array(JSONArray(array))
         case yajl_t_true:

@@ -22,6 +22,8 @@
 		D68BB35421E7E46900B054F1 /* FineJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D68BB2E121E6507600B054F1 /* FineJSON.framework */; };
 		D68BB35D21E7E60000B054F1 /* XCTestManifests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68BB35B21E7E60000B054F1 /* XCTestManifests.swift */; };
 		D68BB35E21E7E60000B054F1 /* DecodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68BB35C21E7E60000B054F1 /* DecodeTests.swift */; };
+		D68BB36021E803FE00B054F1 /* WeakTypingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68BB35F21E803FE00B054F1 /* WeakTypingTests.swift */; };
+		D68BB36221E8047700B054F1 /* DecoderCodingPathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68BB36121E8047700B054F1 /* DecoderCodingPathTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +55,8 @@
 		D68BB35321E7E46900B054F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D68BB35B21E7E60000B054F1 /* XCTestManifests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCTestManifests.swift; sourceTree = "<group>"; };
 		D68BB35C21E7E60000B054F1 /* DecodeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DecodeTests.swift; sourceTree = "<group>"; };
+		D68BB35F21E803FE00B054F1 /* WeakTypingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakTypingTests.swift; sourceTree = "<group>"; };
+		D68BB36121E8047700B054F1 /* DecoderCodingPathTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecoderCodingPathTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,8 +147,10 @@
 		D68BB35A21E7E4DD00B054F1 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				D68BB35C21E7E60000B054F1 /* DecodeTests.swift */,
 				D68BB35B21E7E60000B054F1 /* XCTestManifests.swift */,
+				D68BB35C21E7E60000B054F1 /* DecodeTests.swift */,
+				D68BB36121E8047700B054F1 /* DecoderCodingPathTests.swift */,
+				D68BB35F21E803FE00B054F1 /* WeakTypingTests.swift */,
 			);
 			name = src;
 			path = ../../Tests/FineJSONTests;
@@ -277,7 +283,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				D68BB35D21E7E60000B054F1 /* XCTestManifests.swift in Sources */,
+				D68BB36221E8047700B054F1 /* DecoderCodingPathTests.swift in Sources */,
 				D68BB35E21E7E60000B054F1 /* DecodeTests.swift in Sources */,
+				D68BB36021E803FE00B054F1 /* WeakTypingTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

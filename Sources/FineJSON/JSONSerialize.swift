@@ -47,16 +47,19 @@ extension yajl_gen_status {
 
 public struct JSONSerializeOptions {
     public var isPrettyPrint: Bool
+    public var indentString: String
     
-    public init(isPrettyPrint: Bool) {
+    public init(isPrettyPrint: Bool = true,
+                indentString: String = "  ")
+    {
         self.isPrettyPrint = isPrettyPrint
+        self.indentString = indentString
     }
 }
 
 extension JSON {
     public func serialize(options: JSONSerializeOptions) throws -> Data {
         let yg = yajl_gen_alloc(nil)!
-
         defer {
             yajl_gen_free(yg)
         }
@@ -64,6 +67,9 @@ extension JSON {
         let y_beautify: CInt = options.isPrettyPrint ? 1 : 0
         _ = withVaList([y_beautify]) { (ap) in
             yajl_gen_config_v(yg, yajl_gen_beautify, ap)
+        }
+        _ = withVaList([options.indentString]) { (ap) in
+            yajl_gen_config_v(yg, yajl_gen_indent_string, ap)
         }
         
         try serialize(yajl_gen: yg)
@@ -74,10 +80,10 @@ extension JSON {
             var buf: UnsafePointer<UInt8>? = nil
             var len: Int = 0
             try yajl_gen_get_buf(yg, &buf, &len).check()
-            result = Data(bytes: buf!, count: len)
             defer {
                 yajl_gen_clear(yg)
             }
+            result = Data(bytes: buf!, count: len)
         }
         
         return result
@@ -89,8 +95,8 @@ extension JSON {
             try yajl_gen_null(yg).check()
         case .boolean(let b):
             try yajl_gen_bool(yg, b ? 1 : 0).check()
-        case .number(let str):
-            try str.utf8CString.withUnsafeBufferPointer { (str) in
+        case .number(let num):
+            try num.value.utf8CString.withUnsafeBufferPointer { (str) in
                 yajl_gen_number(yg, str.baseAddress, str.count - 1)
                 }.check()
         case .string(let str):

@@ -1,27 +1,23 @@
 import XCTest
 import FineJSON
 
-fileprivate struct A : Codable {
-    struct B : Codable {
-        var a: Int
-        var b: Float
-        var c: String
-        var d: Int?
-        var e: Float?
-        var f: String?
-    }
-    
-    var b: B
-    var c: B?
-    var d: [String]
-}
-
-fileprivate struct B : Codable {
-    var a: String
-    var b: Int
-}
-
 final class DecodeTests: XCTestCase {
+    struct A : Codable {
+        struct B : Codable {
+            var a: Int
+            var b: Float
+            var c: String
+            var d: Int?
+            var e: Float?
+            var f: String?
+        }
+        
+        var b: B
+        var c: B?
+        var d: [String]
+    }
+
+    
     func test1() throws {
         let json = """
 {
@@ -51,6 +47,11 @@ final class DecodeTests: XCTestCase {
         XCTAssertEqual(a.d, ["d1", "d2", "d3"])
     }
     
+    struct B : Codable {
+        var a: String
+        var b: Int
+    }
+
     func testBrokenJSON() throws {
         let json = """
 {
@@ -69,4 +70,6 @@ final class DecodeTests: XCTestCase {
             XCTAssertTrue(m.contains("parse error"))
         }
     }
+
+
 }
