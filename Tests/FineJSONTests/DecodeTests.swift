@@ -70,6 +70,4 @@ final class DecodeTests: XCTestCase {
             XCTAssertTrue(m.contains("parse error"))
         }
     }
-
-
 }

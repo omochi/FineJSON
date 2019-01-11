@@ -34,6 +34,25 @@ internal struct SDContainer : SingleValueDecodingContainer {
     }
     
     func decode<T>(_ type: T.Type) throws -> T where T : Decodable {
+        if type == JSON.self {
+            return value as! T
+        }
+        if type == JSONObject.self,
+            case .object(let object) = value
+        {
+            return object as! T
+        }
+        if type == JSONArray.self,
+            case .array(let array) = value
+        {
+            return array as! T
+        }
+        if type == JSONNumber.self,
+            case .number(let number) = value
+        {
+            return number as! T
+        }
+        
         return try type.init(from: decoder)
     }
 }
