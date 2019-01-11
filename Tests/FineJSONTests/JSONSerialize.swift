@@ -11,8 +11,8 @@ class JSONSerialize: XCTestCase {
             ]))
         
         do {
-            let data = try a.serialize(options: JSONSerializeOptions(isPrettyPrint: true,
-                                                                     indentString: "  "))
+            let data = try a.serialize(options: JSON.SerializeOptions(isPrettyPrint: true,
+                                                                      indentString: "  "))
             let json = String(data: data, encoding: .utf8)!
 
             let expect = """
@@ -26,8 +26,8 @@ class JSONSerialize: XCTestCase {
         }
         
         do {
-            let data = try a.serialize(options: JSONSerializeOptions(isPrettyPrint: true,
-                                                                     indentString: "    "))
+            let data = try a.serialize(options: JSON.SerializeOptions(isPrettyPrint: true,
+                                                                      indentString: "    "))
             let json = String(data: data, encoding: .utf8)!
             
             let expect = """
@@ -41,8 +41,8 @@ class JSONSerialize: XCTestCase {
         }
         
         do {
-            let data = try a.serialize(options: JSONSerializeOptions(isPrettyPrint: true,
-                                                                     indentString: "\t"))
+            let data = try a.serialize(options: JSON.SerializeOptions(isPrettyPrint: true,
+                                                                      indentString: "\t"))
             let json = String(data: data, encoding: .utf8)!
             
             let t = "\t"
@@ -57,7 +57,7 @@ class JSONSerialize: XCTestCase {
         }
         
         do {
-            let data = try a.serialize(options: JSONSerializeOptions(isPrettyPrint: false))
+            let data = try a.serialize(options: JSON.SerializeOptions(isPrettyPrint: false))
             let json = String(data: data, encoding: .utf8)!
             
             let expect = """
@@ -77,7 +77,7 @@ class JSONSerialize: XCTestCase {
                 ]))
             ]))
         
-        let data = try a.serialize(options: JSONSerializeOptions(isPrettyPrint: true))
+        let data = try a.serialize(options: JSON.SerializeOptions(isPrettyPrint: true))
         let json = String(data: data, encoding: .utf8)!
         
         let expect = """

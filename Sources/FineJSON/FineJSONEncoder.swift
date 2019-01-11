@@ -1,12 +1,19 @@
 import Foundation
 
 public class FineJSONEncoder {
+    public enum OptionalEncodingStrategy {
+        case keyAbsence
+        case explicitNull
+    }
+    
     public init() {
-        self.jsonSerializeOptions = JSONSerializeOptions()
+        self.jsonSerializeOptions = JSON.SerializeOptions()
+        self.optionalEncodingStrategy = .keyAbsence
         self.userInfo = [:]
     }
     
-    public var jsonSerializeOptions: JSONSerializeOptions
+    public var jsonSerializeOptions: JSON.SerializeOptions
+    public var optionalEncodingStrategy: OptionalEncodingStrategy
     public var userInfo: [CodingUserInfoKey: Any]
     
     public func encode<T>(_ value: T) throws -> Data
@@ -20,7 +27,9 @@ public class FineJSONEncoder {
         where T : Encodable
     {
         let box = BoxJSON(.null)
-        let opts = _Encoder.Options(userInfo: userInfo)
+        let opts = _Encoder.Options(
+            optionalEncodingStrategy: optionalEncodingStrategy,
+            userInfo: userInfo)
         let encoder = _Encoder(codingPath: [],
                                options: opts,
                                box: box)
@@ -32,6 +41,7 @@ public class FineJSONEncoder {
 
 internal class _Encoder : Swift.Encoder {
     public struct Options {
+        public var optionalEncodingStrategy: FineJSONEncoder.OptionalEncodingStrategy
         public var userInfo: [CodingUserInfoKey: Any]
     }
     

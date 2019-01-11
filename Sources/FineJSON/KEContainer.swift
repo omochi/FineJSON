@@ -38,6 +38,24 @@ internal struct KEContainer<Key> : KeyedEncodingContainerProtocol where Key : Co
             try c.encode(value)
         }
     }
+
+    private mutating func _encodeIfPresentGeneric<T>(_ value: T?, forKey key: Key) throws
+        where T : Encodable
+    {
+        switch encoder.options.optionalEncodingStrategy {
+        case .keyAbsence:
+            guard let value = value else {
+                return
+            }
+            try encode(value, forKey: key)
+        case .explicitNull:
+            if let value = value {
+                try encode(value, forKey: key)
+            } else {
+                try encodeNil(forKey: key)
+            }
+        }
+    }
     
     mutating func nestedContainer<NestedKey>(keyedBy keyType: NestedKey.Type, forKey key: Key)
         -> KeyedEncodingContainer<NestedKey> where NestedKey : CodingKey
@@ -84,5 +102,52 @@ internal struct KEContainer<Key> : KeyedEncodingContainerProtocol where Key : Co
                                box: elementBox)
         return try encode(encoder)
     }
-    
+}
+
+extension KEContainer {
+    mutating func encodeIfPresent(_ value: Bool?, forKey key: Key) throws {
+        try _encodeIfPresentGeneric(value, forKey: key)
+    }
+    mutating func encodeIfPresent(_ value: Int?, forKey key: Key) throws {
+        try _encodeIfPresentGeneric(value, forKey: key)
+    }
+    mutating func encodeIfPresent(_ value: Int8?, forKey key: Key) throws {
+        try _encodeIfPresentGeneric(value, forKey: key)
+    }
+    mutating func encodeIfPresent(_ value: Int16?, forKey key: Key) throws {
+        try _encodeIfPresentGeneric(value, forKey: key)
+    }
+    mutating func encodeIfPresent(_ value: Int32?, forKey key: Key) throws {
+        try _encodeIfPresentGeneric(value, forKey: key)
+    }
+    mutating func encodeIfPresent(_ value: Int64?, forKey key: Key) throws {
+        try _encodeIfPresentGeneric(value, forKey: key)
+    }
+    mutating func encodeIfPresent(_ value: UInt?, forKey key: Key) throws {
+        try _encodeIfPresentGeneric(value, forKey: key)
+    }
+    mutating func encodeIfPresent(_ value: UInt8?, forKey key: Key) throws {
+        try _encodeIfPresentGeneric(value, forKey: key)
+    }
+    mutating func encodeIfPresent(_ value: UInt16?, forKey key: Key) throws {
+        try _encodeIfPresentGeneric(value, forKey: key)
+    }
+    mutating func encodeIfPresent(_ value: UInt32?, forKey key: Key) throws {
+        try _encodeIfPresentGeneric(value, forKey: key)
+    }
+    mutating func encodeIfPresent(_ value: UInt64?, forKey key: Key) throws {
+        try _encodeIfPresentGeneric(value, forKey: key)
+    }
+    mutating func encodeIfPresent(_ value: Float?, forKey key: Key) throws {
+        try _encodeIfPresentGeneric(value, forKey: key)
+    }
+    mutating func encodeIfPresent(_ value: Double?, forKey key: Key) throws {
+        try _encodeIfPresentGeneric(value, forKey: key)
+    }
+    mutating func encodeIfPresent(_ value: String?, forKey key: Key) throws {
+        try _encodeIfPresentGeneric(value, forKey: key)
+    }
+    mutating func encodeIfPresent<T>(_ value: T?, forKey key: Key) throws where T : Encodable {
+        return try _encodeIfPresentGeneric(value, forKey: key)
+    }
 }

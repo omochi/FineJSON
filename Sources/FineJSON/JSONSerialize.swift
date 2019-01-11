@@ -45,20 +45,22 @@ extension yajl_gen_status {
     }
 }
 
-public struct JSONSerializeOptions {
-    public var isPrettyPrint: Bool
-    public var indentString: String
-    
-    public init(isPrettyPrint: Bool = true,
-                indentString: String = "  ")
-    {
-        self.isPrettyPrint = isPrettyPrint
-        self.indentString = indentString
+extension JSON {
+    public struct SerializeOptions {
+        public var isPrettyPrint: Bool
+        public var indentString: String
+        
+        public init(isPrettyPrint: Bool = true,
+                    indentString: String = "  ")
+        {
+            self.isPrettyPrint = isPrettyPrint
+            self.indentString = indentString
+        }
     }
 }
 
 extension JSON {
-    public func serialize(options: JSONSerializeOptions) throws -> Data {
+    public func serialize(options: SerializeOptions) throws -> Data {
         let yg = yajl_gen_alloc(nil)!
         defer {
             yajl_gen_free(yg)
