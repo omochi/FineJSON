@@ -81,6 +81,8 @@ public struct JSONObject {
         public init(_ value: String) {
             self.value = value
         }
+        
+        public static let `super`: Key = Key("super")
     }
     
     public var value: OrderedDictionary<String, JSON>
@@ -96,6 +98,7 @@ public struct JSONObject {
     public init(_ keyAndValues: KeyValuePairs<String, JSON>) {
         self.init(OrderedDictionary(keyAndValues))
     }
+    
 }
 
 extension JSONObject.Key : CodingKey {

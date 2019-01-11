@@ -33,18 +33,10 @@ internal struct KDContainer<Key> : KeyedDecodingContainerProtocol
     }
     
     func decodeNil(forKey key: Key) throws -> Bool {
-        return try decodeElement(key: key,
-                                 noKey: noKeyIsNil)
+        return decodeElement(key: key,
+                             noKey: noKeyIsNil)
         { (d) in
             return d.singleValueContainer().decodeNil()
-        }
-    }
-    
-    func decode<X>(_ type: X.Type, forKey key: Key) throws -> X where X : CodablePrimitive {
-        return try decodeElement(key: key,
-                                 noKey: throwNoKeyError)
-        { (d) in
-            return try d.singleValueContainer().decode(type)
         }
     }
     
@@ -74,16 +66,16 @@ internal struct KDContainer<Key> : KeyedDecodingContainerProtocol
             return try d.unkeyedContainer()
         }
     }
-    
+
     func superDecoder() throws -> Decoder {
-        return try _superDecoder(key: JSONObject.Key("super"))
+        return try _superDecoder(forKey: JSONObject.Key.super)
     }
     
     func superDecoder(forKey key: Key) throws -> Decoder {
-        return try _superDecoder(key: key)
+        return try _superDecoder(forKey: key)
     }
     
-    private func _superDecoder(key: CodingKey) throws -> Decoder {
+    func _superDecoder(forKey key: CodingKey) throws -> Decoder {
         return try decodeElement(key: key,
                                  noKey: throwNoKeyError)
         { (d) in
@@ -93,7 +85,7 @@ internal struct KDContainer<Key> : KeyedDecodingContainerProtocol
     
     private func decodeElement<R>(key: CodingKey,
                                   noKey: (CodingKey, [CodingKey]) throws -> R,
-                                  decode: (_Decoder) throws -> R) throws -> R
+                                  decode: (_Decoder) throws -> R) rethrows -> R
     {
         let keyStr = key.stringValue
         

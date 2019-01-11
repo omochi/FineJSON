@@ -28,6 +28,11 @@
 		D6F9AC2121E857A200AB5C0A /* JSONCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F9AC2021E857A200AB5C0A /* JSONCodable.swift */; };
 		D6F9AC2321E857D500AB5C0A /* JSONEquatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F9AC2221E857D500AB5C0A /* JSONEquatable.swift */; };
 		D6F9AC2721E86CA300AB5C0A /* JSONSerialize.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F9AC2621E86CA300AB5C0A /* JSONSerialize.swift */; };
+		D6F9AC2921E8751A00AB5C0A /* FineJSONEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F9AC2821E8751A00AB5C0A /* FineJSONEncoder.swift */; };
+		D6F9AC2B21E87AF000AB5C0A /* SEContiner.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F9AC2A21E87AF000AB5C0A /* SEContiner.swift */; };
+		D6F9AC2D21E880EC00AB5C0A /* UEContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F9AC2C21E880EC00AB5C0A /* UEContainer.swift */; };
+		D6F9AC3121E88D5900AB5C0A /* BoxJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F9AC3021E88D5900AB5C0A /* BoxJSON.swift */; };
+		D6F9AC3321E8955700AB5C0A /* KEContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F9AC3221E8955700AB5C0A /* KEContainer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +70,11 @@
 		D6F9AC2021E857A200AB5C0A /* JSONCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONCodable.swift; sourceTree = "<group>"; };
 		D6F9AC2221E857D500AB5C0A /* JSONEquatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONEquatable.swift; sourceTree = "<group>"; };
 		D6F9AC2621E86CA300AB5C0A /* JSONSerialize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONSerialize.swift; sourceTree = "<group>"; };
+		D6F9AC2821E8751A00AB5C0A /* FineJSONEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FineJSONEncoder.swift; sourceTree = "<group>"; };
+		D6F9AC2A21E87AF000AB5C0A /* SEContiner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SEContiner.swift; sourceTree = "<group>"; };
+		D6F9AC2C21E880EC00AB5C0A /* UEContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UEContainer.swift; sourceTree = "<group>"; };
+		D6F9AC3021E88D5900AB5C0A /* BoxJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxJSON.swift; sourceTree = "<group>"; };
+		D6F9AC3221E8955700AB5C0A /* KEContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KEContainer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +130,13 @@
 			isa = PBXGroup;
 			children = (
 				D68BB2EF21E6509700B054F1 /* FineJSONDecoder.swift */,
+				D68BB34721E6822000B054F1 /* KDContainer.swift */,
+				D68BB34321E681F300B054F1 /* UDContainer.swift */,
+				D68BB34521E6820F00B054F1 /* SDContainer.swift */,
+				D6F9AC2821E8751A00AB5C0A /* FineJSONEncoder.swift */,
+				D6F9AC3221E8955700AB5C0A /* KEContainer.swift */,
+				D6F9AC2C21E880EC00AB5C0A /* UEContainer.swift */,
+				D6F9AC2A21E87AF000AB5C0A /* SEContiner.swift */,
 				D68BB2EE21E6509700B054F1 /* JSON.swift */,
 				D68BB2ED21E6509700B054F1 /* JSONParse.swift */,
 				D68BB34921E760DB00B054F1 /* JSONSerialize.swift */,
@@ -128,9 +145,7 @@
 				D68BB2F021E6509700B054F1 /* CodablePrimitiveDecoder.swift */,
 				D68BB2F121E6509700B054F1 /* CodablePrimitive.swift */,
 				D68BB34121E666DC00B054F1 /* WeakTypingPrimitiveJSONDecoder.swift */,
-				D68BB34721E6822000B054F1 /* KDContainer.swift */,
-				D68BB34321E681F300B054F1 /* UDContainer.swift */,
-				D68BB34521E6820F00B054F1 /* SDContainer.swift */,
+				D6F9AC3021E88D5900AB5C0A /* BoxJSON.swift */,
 			);
 			name = src;
 			path = ../../Sources/FineJSON;
@@ -284,8 +299,13 @@
 				D68BB2F621E6509700B054F1 /* CodablePrimitive.swift in Sources */,
 				D68BB2F521E6509700B054F1 /* CodablePrimitiveDecoder.swift in Sources */,
 				D68BB34221E666DC00B054F1 /* WeakTypingPrimitiveJSONDecoder.swift in Sources */,
+				D6F9AC2B21E87AF000AB5C0A /* SEContiner.swift in Sources */,
+				D6F9AC3321E8955700AB5C0A /* KEContainer.swift in Sources */,
 				D68BB34421E681F300B054F1 /* UDContainer.swift in Sources */,
+				D6F9AC2D21E880EC00AB5C0A /* UEContainer.swift in Sources */,
+				D6F9AC3121E88D5900AB5C0A /* BoxJSON.swift in Sources */,
 				D68BB34A21E760DB00B054F1 /* JSONSerialize.swift in Sources */,
+				D6F9AC2921E8751A00AB5C0A /* FineJSONEncoder.swift in Sources */,
 				D68BB34621E6820F00B054F1 /* SDContainer.swift in Sources */,
 				D68BB34821E6822000B054F1 /* KDContainer.swift in Sources */,
 				D68BB2F321E6509700B054F1 /* JSON.swift in Sources */,

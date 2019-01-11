@@ -37,13 +37,7 @@ internal struct UDContainer : UnkeyedDecodingContainer {
             return d.singleValueContainer().decodeNil()
         }
     }
-    
-    mutating func decode<X>(_ type: X.Type) throws -> X where X : CodablePrimitive {
-        return try decodeElement { (d) in
-            return try d.singleValueContainer().decode(type)
-        }
-    }
-    
+
     mutating func decode<T>(_ type: T.Type) throws -> T where T : Decodable {
         return try decodeElement { (d) in
             return try d.singleValueContainer().decode(type)

@@ -70,4 +70,15 @@ final class DecodeTests: XCTestCase {
             XCTAssertTrue(m.contains("parse error"))
         }
     }
+    
+    func testSDinUD() throws {
+        let json = """
+[1, 2]
+"""
+        let data = json.data(using: .utf8)!
+        let decoder = FineJSONDecoder()
+        
+        let a = try decoder.decode([Int].self, from: data)
+        XCTAssertEqual(a, [1, 2])
+    }
 }
