@@ -32,7 +32,8 @@ public class FineJSONEncoder {
             userInfo: userInfo)
         let encoder = _Encoder(codingPath: [],
                                options: opts,
-                               box: box)
+                               box: box,
+                               encodingType: nil)
         var c = encoder.singleValueContainer()
         try c.encode(value)
         return box.unbox()
@@ -48,14 +49,17 @@ internal class _Encoder : Swift.Encoder {
     public let codingPath: [CodingKey]
     public let options: Options
     public let box: BoxJSON
+    public let encodingType: Any.Type?
     
     public init(codingPath: [CodingKey],
                 options: Options,
-                box: BoxJSON)
+                box: BoxJSON,
+                encodingType: Any.Type?)
     {
         self.codingPath = codingPath
         self.options = options
         self.box = box
+        self.encodingType = encodingType
     }
     
     public var userInfo: [CodingUserInfoKey : Any] {
@@ -65,16 +69,30 @@ internal class _Encoder : Swift.Encoder {
     public func container<Key>(keyedBy type: Key.Type) -> KeyedEncodingContainer<Key>
         where Key : CodingKey
     {
-        let c = KEContainer<Key>(encoder: self)
+        let c = KeyedEC<Key>(encoder: self)
         return KeyedEncodingContainer(c)
     }
     
     public func unkeyedContainer() -> UnkeyedEncodingContainer
     {
-        return UEContainer(encoder: self)
+        return UnkeyedEC(encoder: self)
     }
     
     public func singleValueContainer() -> SingleValueEncodingContainer {
-        return SEContainer(encoder: self)
+        return SingleEC(encoder: self)
+    }
+    
+    public func jsonKey(for codingKey: CodingKey) -> String {
+        let origKey = codingKey.stringValue
+        
+        if let type = encodingType,
+            let anoType = type as? FineJSONAnnotatable.Type,
+            let ano = anoType.keyAnnotations[origKey],
+            let jsonKey = ano.jsonKey
+        {
+            return jsonKey
+        }
+        
+        return origKey
     }
 }

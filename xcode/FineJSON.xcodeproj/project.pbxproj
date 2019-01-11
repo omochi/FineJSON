@@ -15,25 +15,27 @@
 		D68BB2F921E6511F00B054F1 /* OrderedDictionary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D68BB2F821E6511F00B054F1 /* OrderedDictionary.framework */; };
 		D68BB2FB21E6511F00B054F1 /* yajl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D68BB2FA21E6511F00B054F1 /* yajl.framework */; };
 		D68BB34221E666DC00B054F1 /* WeakTypingPrimitiveJSONDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68BB34121E666DC00B054F1 /* WeakTypingPrimitiveJSONDecoder.swift */; };
-		D68BB34421E681F300B054F1 /* UDContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68BB34321E681F300B054F1 /* UDContainer.swift */; };
-		D68BB34621E6820F00B054F1 /* SDContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68BB34521E6820F00B054F1 /* SDContainer.swift */; };
-		D68BB34821E6822000B054F1 /* KDContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68BB34721E6822000B054F1 /* KDContainer.swift */; };
+		D68BB34421E681F300B054F1 /* UnkeyedDC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68BB34321E681F300B054F1 /* UnkeyedDC.swift */; };
+		D68BB34621E6820F00B054F1 /* SingleDC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68BB34521E6820F00B054F1 /* SingleDC.swift */; };
+		D68BB34821E6822000B054F1 /* KeyedDC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68BB34721E6822000B054F1 /* KeyedDC.swift */; };
 		D68BB34A21E760DB00B054F1 /* JSONSerialize.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68BB34921E760DB00B054F1 /* JSONSerialize.swift */; };
 		D68BB35421E7E46900B054F1 /* FineJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D68BB2E121E6507600B054F1 /* FineJSON.framework */; };
 		D68BB35D21E7E60000B054F1 /* XCTestManifests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68BB35B21E7E60000B054F1 /* XCTestManifests.swift */; };
 		D68BB35E21E7E60000B054F1 /* DecodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68BB35C21E7E60000B054F1 /* DecodeTests.swift */; };
 		D68BB36021E803FE00B054F1 /* WeakTypingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68BB35F21E803FE00B054F1 /* WeakTypingTests.swift */; };
 		D68BB36221E8047700B054F1 /* DecoderCodingPathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68BB36121E8047700B054F1 /* DecoderCodingPathTests.swift */; };
+		D68BB36421E8BA2F00B054F1 /* FineJSONAnnotatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68BB36321E8BA2F00B054F1 /* FineJSONAnnotatable.swift */; };
+		D68BB36621E8C08F00B054F1 /* AnnotationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68BB36521E8C08F00B054F1 /* AnnotationTests.swift */; };
 		D6F9AC1F21E8564000AB5C0A /* JSONDecodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F9AC1E21E8564000AB5C0A /* JSONDecodeTests.swift */; };
 		D6F9AC2121E857A200AB5C0A /* JSONCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F9AC2021E857A200AB5C0A /* JSONCodable.swift */; };
 		D6F9AC2321E857D500AB5C0A /* JSONEquatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F9AC2221E857D500AB5C0A /* JSONEquatable.swift */; };
 		D6F9AC2721E86CA300AB5C0A /* JSONSerialize.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F9AC2621E86CA300AB5C0A /* JSONSerialize.swift */; };
 		D6F9AC2921E8751A00AB5C0A /* FineJSONEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F9AC2821E8751A00AB5C0A /* FineJSONEncoder.swift */; };
-		D6F9AC2B21E87AF000AB5C0A /* SEContiner.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F9AC2A21E87AF000AB5C0A /* SEContiner.swift */; };
-		D6F9AC2D21E880EC00AB5C0A /* UEContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F9AC2C21E880EC00AB5C0A /* UEContainer.swift */; };
+		D6F9AC2B21E87AF000AB5C0A /* SingleEC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F9AC2A21E87AF000AB5C0A /* SingleEC.swift */; };
+		D6F9AC2D21E880EC00AB5C0A /* UnkeyedEC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F9AC2C21E880EC00AB5C0A /* UnkeyedEC.swift */; };
 		D6F9AC3121E88D5900AB5C0A /* BoxJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F9AC3021E88D5900AB5C0A /* BoxJSON.swift */; };
-		D6F9AC3321E8955700AB5C0A /* KEContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F9AC3221E8955700AB5C0A /* KEContainer.swift */; };
-		D6F9AC3521E89B5700AB5C0A /* EncoderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F9AC3421E89B5700AB5C0A /* EncoderTests.swift */; };
+		D6F9AC3321E8955700AB5C0A /* KeyedEC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F9AC3221E8955700AB5C0A /* KeyedEC.swift */; };
+		D6F9AC3521E89B5700AB5C0A /* EncodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F9AC3421E89B5700AB5C0A /* EncodeTests.swift */; };
 		D6F9AC3721E89CF700AB5C0A /* JSONEncodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F9AC3621E89CF700AB5C0A /* JSONEncodeTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -58,9 +60,9 @@
 		D68BB2F821E6511F00B054F1 /* OrderedDictionary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OrderedDictionary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D68BB2FA21E6511F00B054F1 /* yajl.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = yajl.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D68BB34121E666DC00B054F1 /* WeakTypingPrimitiveJSONDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakTypingPrimitiveJSONDecoder.swift; sourceTree = "<group>"; };
-		D68BB34321E681F300B054F1 /* UDContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UDContainer.swift; sourceTree = "<group>"; };
-		D68BB34521E6820F00B054F1 /* SDContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SDContainer.swift; sourceTree = "<group>"; };
-		D68BB34721E6822000B054F1 /* KDContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KDContainer.swift; sourceTree = "<group>"; };
+		D68BB34321E681F300B054F1 /* UnkeyedDC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnkeyedDC.swift; sourceTree = "<group>"; };
+		D68BB34521E6820F00B054F1 /* SingleDC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleDC.swift; sourceTree = "<group>"; };
+		D68BB34721E6822000B054F1 /* KeyedDC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyedDC.swift; sourceTree = "<group>"; };
 		D68BB34921E760DB00B054F1 /* JSONSerialize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONSerialize.swift; sourceTree = "<group>"; };
 		D68BB34F21E7E46900B054F1 /* FineJSONTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FineJSONTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D68BB35321E7E46900B054F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -68,16 +70,18 @@
 		D68BB35C21E7E60000B054F1 /* DecodeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DecodeTests.swift; sourceTree = "<group>"; };
 		D68BB35F21E803FE00B054F1 /* WeakTypingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakTypingTests.swift; sourceTree = "<group>"; };
 		D68BB36121E8047700B054F1 /* DecoderCodingPathTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecoderCodingPathTests.swift; sourceTree = "<group>"; };
+		D68BB36321E8BA2F00B054F1 /* FineJSONAnnotatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FineJSONAnnotatable.swift; sourceTree = "<group>"; };
+		D68BB36521E8C08F00B054F1 /* AnnotationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationTests.swift; sourceTree = "<group>"; };
 		D6F9AC1E21E8564000AB5C0A /* JSONDecodeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONDecodeTests.swift; sourceTree = "<group>"; };
 		D6F9AC2021E857A200AB5C0A /* JSONCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONCodable.swift; sourceTree = "<group>"; };
 		D6F9AC2221E857D500AB5C0A /* JSONEquatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONEquatable.swift; sourceTree = "<group>"; };
 		D6F9AC2621E86CA300AB5C0A /* JSONSerialize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONSerialize.swift; sourceTree = "<group>"; };
 		D6F9AC2821E8751A00AB5C0A /* FineJSONEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FineJSONEncoder.swift; sourceTree = "<group>"; };
-		D6F9AC2A21E87AF000AB5C0A /* SEContiner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SEContiner.swift; sourceTree = "<group>"; };
-		D6F9AC2C21E880EC00AB5C0A /* UEContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UEContainer.swift; sourceTree = "<group>"; };
+		D6F9AC2A21E87AF000AB5C0A /* SingleEC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleEC.swift; sourceTree = "<group>"; };
+		D6F9AC2C21E880EC00AB5C0A /* UnkeyedEC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnkeyedEC.swift; sourceTree = "<group>"; };
 		D6F9AC3021E88D5900AB5C0A /* BoxJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxJSON.swift; sourceTree = "<group>"; };
-		D6F9AC3221E8955700AB5C0A /* KEContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KEContainer.swift; sourceTree = "<group>"; };
-		D6F9AC3421E89B5700AB5C0A /* EncoderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncoderTests.swift; sourceTree = "<group>"; };
+		D6F9AC3221E8955700AB5C0A /* KeyedEC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyedEC.swift; sourceTree = "<group>"; };
+		D6F9AC3421E89B5700AB5C0A /* EncodeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncodeTests.swift; sourceTree = "<group>"; };
 		D6F9AC3621E89CF700AB5C0A /* JSONEncodeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONEncodeTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -134,13 +138,14 @@
 			isa = PBXGroup;
 			children = (
 				D68BB2EF21E6509700B054F1 /* FineJSONDecoder.swift */,
-				D68BB34721E6822000B054F1 /* KDContainer.swift */,
-				D68BB34321E681F300B054F1 /* UDContainer.swift */,
-				D68BB34521E6820F00B054F1 /* SDContainer.swift */,
+				D68BB34721E6822000B054F1 /* KeyedDC.swift */,
+				D68BB34321E681F300B054F1 /* UnkeyedDC.swift */,
+				D68BB34521E6820F00B054F1 /* SingleDC.swift */,
 				D6F9AC2821E8751A00AB5C0A /* FineJSONEncoder.swift */,
-				D6F9AC3221E8955700AB5C0A /* KEContainer.swift */,
-				D6F9AC2C21E880EC00AB5C0A /* UEContainer.swift */,
-				D6F9AC2A21E87AF000AB5C0A /* SEContiner.swift */,
+				D6F9AC3221E8955700AB5C0A /* KeyedEC.swift */,
+				D6F9AC2C21E880EC00AB5C0A /* UnkeyedEC.swift */,
+				D6F9AC2A21E87AF000AB5C0A /* SingleEC.swift */,
+				D68BB36321E8BA2F00B054F1 /* FineJSONAnnotatable.swift */,
 				D68BB2EE21E6509700B054F1 /* JSON.swift */,
 				D68BB2ED21E6509700B054F1 /* JSONParse.swift */,
 				D68BB34921E760DB00B054F1 /* JSONSerialize.swift */,
@@ -179,10 +184,11 @@
 				D68BB35B21E7E60000B054F1 /* XCTestManifests.swift */,
 				D68BB35C21E7E60000B054F1 /* DecodeTests.swift */,
 				D68BB36121E8047700B054F1 /* DecoderCodingPathTests.swift */,
+				D68BB36521E8C08F00B054F1 /* AnnotationTests.swift */,
 				D68BB35F21E803FE00B054F1 /* WeakTypingTests.swift */,
 				D6F9AC1E21E8564000AB5C0A /* JSONDecodeTests.swift */,
 				D6F9AC2621E86CA300AB5C0A /* JSONSerialize.swift */,
-				D6F9AC3421E89B5700AB5C0A /* EncoderTests.swift */,
+				D6F9AC3421E89B5700AB5C0A /* EncodeTests.swift */,
 				D6F9AC3621E89CF700AB5C0A /* JSONEncodeTests.swift */,
 			);
 			name = src;
@@ -305,15 +311,16 @@
 				D68BB2F621E6509700B054F1 /* CodablePrimitive.swift in Sources */,
 				D68BB2F521E6509700B054F1 /* CodablePrimitiveDecoder.swift in Sources */,
 				D68BB34221E666DC00B054F1 /* WeakTypingPrimitiveJSONDecoder.swift in Sources */,
-				D6F9AC2B21E87AF000AB5C0A /* SEContiner.swift in Sources */,
-				D6F9AC3321E8955700AB5C0A /* KEContainer.swift in Sources */,
-				D68BB34421E681F300B054F1 /* UDContainer.swift in Sources */,
-				D6F9AC2D21E880EC00AB5C0A /* UEContainer.swift in Sources */,
+				D6F9AC2B21E87AF000AB5C0A /* SingleEC.swift in Sources */,
+				D6F9AC3321E8955700AB5C0A /* KeyedEC.swift in Sources */,
+				D68BB34421E681F300B054F1 /* UnkeyedDC.swift in Sources */,
+				D6F9AC2D21E880EC00AB5C0A /* UnkeyedEC.swift in Sources */,
+				D68BB36421E8BA2F00B054F1 /* FineJSONAnnotatable.swift in Sources */,
 				D6F9AC3121E88D5900AB5C0A /* BoxJSON.swift in Sources */,
 				D68BB34A21E760DB00B054F1 /* JSONSerialize.swift in Sources */,
 				D6F9AC2921E8751A00AB5C0A /* FineJSONEncoder.swift in Sources */,
-				D68BB34621E6820F00B054F1 /* SDContainer.swift in Sources */,
-				D68BB34821E6822000B054F1 /* KDContainer.swift in Sources */,
+				D68BB34621E6820F00B054F1 /* SingleDC.swift in Sources */,
+				D68BB34821E6822000B054F1 /* KeyedDC.swift in Sources */,
 				D68BB2F321E6509700B054F1 /* JSON.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -326,8 +333,9 @@
 				D68BB36221E8047700B054F1 /* DecoderCodingPathTests.swift in Sources */,
 				D6F9AC2721E86CA300AB5C0A /* JSONSerialize.swift in Sources */,
 				D6F9AC3721E89CF700AB5C0A /* JSONEncodeTests.swift in Sources */,
-				D6F9AC3521E89B5700AB5C0A /* EncoderTests.swift in Sources */,
+				D6F9AC3521E89B5700AB5C0A /* EncodeTests.swift in Sources */,
 				D68BB35E21E7E60000B054F1 /* DecodeTests.swift in Sources */,
+				D68BB36621E8C08F00B054F1 /* AnnotationTests.swift in Sources */,
 				D6F9AC1F21E8564000AB5C0A /* JSONDecodeTests.swift in Sources */,
 				D68BB36021E803FE00B054F1 /* WeakTypingTests.swift in Sources */,
 			);

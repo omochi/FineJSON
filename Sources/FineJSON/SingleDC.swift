@@ -1,6 +1,6 @@
 import Foundation
 
-internal struct SDContainer : SingleValueDecodingContainer {
+internal struct SingleDC : SingleValueDecodingContainer {
     let decoder: _Decoder
     
     var value: JSON {
@@ -52,6 +52,11 @@ internal struct SDContainer : SingleValueDecodingContainer {
         {
             return number as! T
         }
+        
+        let decoder = _Decoder(json: self.value,
+                               codingPath: self.codingPath,
+                               options: self.decoder.options,
+                               decodingType: type)
         
         return try type.init(from: decoder)
     }

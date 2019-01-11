@@ -23,7 +23,8 @@ public class FineJSONDecoder {
                                      userInfo: userInfo)
         let decoder = _Decoder(json: json,
                                codingPath: [],
-                               options: opts)
+                               options: opts,
+                               decodingType: nil)
         return try decoder.singleValueContainer().decode(type)
     }
 }
@@ -37,14 +38,17 @@ internal class _Decoder : Decoder {
     public let codingPath: [CodingKey]
     public let value: JSON
     public let options: Options
+    public let decodingType: Any.Type?
 
     public init(json: JSON,
                 codingPath: [CodingKey],
-                options: Options)
+                options: Options,
+                decodingType: Any.Type?)
     {
         self.value = json
         self.codingPath = codingPath
         self.options = options
+        self.decodingType = decodingType
     }
     
     public var userInfo: [CodingUserInfoKey : Any] {
@@ -54,16 +58,30 @@ internal class _Decoder : Decoder {
     public func container<Key>(keyedBy type: Key.Type) throws -> KeyedDecodingContainer<Key>
         where Key : CodingKey
     {
-        let c = try KDContainer(decoder: self, value: value, keyType: type)
+        let c = try KeyedDC(decoder: self, value: value, keyType: type)
         return KeyedDecodingContainer<Key>(c)
     }
     
     public func unkeyedContainer() throws -> UnkeyedDecodingContainer {
-        return try UDContainer(decoder: self, value: value)
+        return try UnkeyedDC(decoder: self, value: value)
     }
     
     public func singleValueContainer() -> SingleValueDecodingContainer {
-        return SDContainer(decoder: self, value: value)
+        return SingleDC(decoder: self, value: value)
+    }
+    
+    public func jsonKey(for codingKey: CodingKey) -> String {
+        let origKey = codingKey.stringValue
+        
+        if let type = decodingType,
+            let anoType = type as? FineJSONAnnotatable.Type,
+            let ano = anoType.keyAnnotations[origKey],
+            let jsonKey = ano.jsonKey
+        {
+            return jsonKey
+        }
+        
+        return origKey
     }
 }
 

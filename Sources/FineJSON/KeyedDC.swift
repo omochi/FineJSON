@@ -1,6 +1,6 @@
 import Foundation
 
-internal struct KDContainer<Key> : KeyedDecodingContainerProtocol
+internal struct KeyedDC<Key> : KeyedDecodingContainerProtocol
     where Key : CodingKey
 {
     let decoder: _Decoder
@@ -87,15 +87,18 @@ internal struct KDContainer<Key> : KeyedDecodingContainerProtocol
                                   noKey: (CodingKey, [CodingKey]) throws -> R,
                                   decode: (_Decoder) throws -> R) rethrows -> R
     {
-        let keyStr = key.stringValue
-        
         let codingPath = self.codingPath + [key]
+
+        let jsonKey = self.decoder.jsonKey(for: key)
         
-        guard let elem = object.value[keyStr] else {
+        guard let elem = object.value[jsonKey] else {
             return try noKey(key, codingPath)
         }
         
-        let decoder = _Decoder(json: elem, codingPath: codingPath, options: self.decoder.options)
+        let decoder = _Decoder(json: elem,
+                               codingPath: codingPath,
+                               options: self.decoder.options,
+                               decodingType: nil)
         return try decode(decoder)
     }
     

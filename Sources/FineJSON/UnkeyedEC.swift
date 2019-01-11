@@ -1,6 +1,6 @@
 import Foundation
 
-internal struct UEContainer : UnkeyedEncodingContainer {
+internal struct UnkeyedEC : UnkeyedEncodingContainer {
     let encoder : _Encoder
     
     init(encoder: _Encoder) {
@@ -73,7 +73,8 @@ internal struct UEContainer : UnkeyedEncodingContainer {
         
         let encoder = _Encoder(codingPath: codingPath,
                                options: self.encoder.options,
-                               box: elementBox)
+                               box: elementBox,
+                               encodingType: nil)
         return try encode(encoder)
     }
 }

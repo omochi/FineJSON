@@ -1,6 +1,6 @@
 import Foundation
 
-internal struct UDContainer : UnkeyedDecodingContainer {
+internal struct UnkeyedDC : UnkeyedDecodingContainer {
     let decoder: _Decoder
     
     let array: JSONArray
@@ -76,7 +76,10 @@ internal struct UDContainer : UnkeyedDecodingContainer {
         
         let elem = array.value[currentIndex]
         currentIndex += 1
-        let decoder = _Decoder(json: elem, codingPath: codingPath, options: self.decoder.options)
+        let decoder = _Decoder(json: elem,
+                               codingPath: codingPath,
+                               options: self.decoder.options,
+                               decodingType: nil)
         return try decode(decoder)
     }
 }

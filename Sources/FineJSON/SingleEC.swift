@@ -1,6 +1,6 @@
 import Foundation
 
-internal struct SEContainer : SingleValueEncodingContainer {
+internal struct SingleEC : SingleValueEncodingContainer {
     let encoder : _Encoder
     
     init(encoder: _Encoder) {
@@ -88,7 +88,11 @@ internal struct SEContainer : SingleValueEncodingContainer {
             write(.number(number))
             return
         }
-
+        
+        let encoder = _Encoder(codingPath: codingPath,
+                               options: self.encoder.options,
+                               box: self.encoder.box,
+                               encodingType: T.self)
         try value.encode(to: encoder)
     }
     

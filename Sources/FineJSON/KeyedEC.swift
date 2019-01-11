@@ -1,7 +1,7 @@
 import Foundation
 import OrderedDictionary
 
-internal struct KEContainer<Key> : KeyedEncodingContainerProtocol where Key : CodingKey {
+internal struct KeyedEC<Key> : KeyedEncodingContainerProtocol where Key : CodingKey {
     let encoder: _Encoder
     
     init(encoder: _Encoder) {
@@ -91,20 +91,21 @@ internal struct KEContainer<Key> : KeyedEncodingContainerProtocol where Key : Co
     {
         let codingPath = self.codingPath + [key]
         
+        let jsonKey = self.encoder.jsonKey(for: key)
+        
         let elementBox = BoxJSON(.null)
         
-        let strKey = key.stringValue
-        
-        self.value[strKey] = elementBox
+        self.value[jsonKey] = elementBox
         
         let encoder = _Encoder(codingPath: codingPath,
                                options: self.encoder.options,
-                               box: elementBox)
+                               box: elementBox,
+                               encodingType: nil)
         return try encode(encoder)
     }
 }
 
-extension KEContainer {
+extension KeyedEC {
     mutating func encodeIfPresent(_ value: Bool?, forKey key: Key) throws {
         try _encodeIfPresentGeneric(value, forKey: key)
     }

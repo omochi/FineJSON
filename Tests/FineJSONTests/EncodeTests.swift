@@ -1,7 +1,7 @@
 import XCTest
 import FineJSON
 
-class EncoderTests: XCTestCase {
+class EncodeTests: XCTestCase {
     struct A : Codable {
         var a: Int
         var b: String
