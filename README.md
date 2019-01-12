@@ -328,7 +328,7 @@ You can specify default value for property which is used when JSON key is absent
 - Carthage for mac, iOS.
 
 - Manual xcworkspace for mac, iOS.
-  This is my favourite. 
+  This is my favorite. 
   [Detail is here](https://qiita.com/omochimetaru/items/3a8441be9152ea6619b6)
 
 # License
