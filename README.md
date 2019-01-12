@@ -13,6 +13,8 @@ FineJSON provides `FineJSONEncoder` and `FineJSONDecoder` which are more useful 
   - [Handling complex JSON structure directly](#handling-complex-json-structure-directly)
   - [Customizing JSON key with keeping Codable methods auto synthesis](#customizing-json-key-with-keeping-codable-methods-auto-synthesis)
   - [Default value for absent key](#default-value-for-absent-key)
+- [Supported building environment](#supported-building-environment)
+- [License](#License)
 
 # Features
 
@@ -319,7 +321,7 @@ You can specify default value for property which is used when JSON key is absent
     }
 ```
 
-# Supporting build environment
+# Supported building environment
 
 - SwiftPM for mac, iOS.
 
