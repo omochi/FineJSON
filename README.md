@@ -2,6 +2,18 @@
 
 FineJSON provides `FineJSONEncoder` and `FineJSONDecoder` which are more useful encoder of `Codable`. They alternates standard `Foundation`'s `JSONEncoder` and `JSONDecoder`. This library helps practical requirements in real world which is weird sometime.
 
+## Index
+
+- [Features](#features)
+  - [Keeping JSON key order](#keeping-json-key-order)
+  - [Control Optional.none encoding](#control-optionalnone-encoding)
+  - [Control indent width](#control-indent-width)
+  - [Handling arbitrary digits number](#handling-arbitrary-digits-number)
+  - [Weak typing primitive decoding](#weak-typing-primitive-decoding)
+  - [Handling complex JSON structure directly](#handling-complex-json-structure-directly)
+  - [Customizing JSON key with keeping Codable methods auto synthesis](#customizing-json-key-with-keeping-codable-methods-auto-synthesis)
+  - [Default value for absent key](#default-value-for-absent-key)
+
 # Features
 
 Working code of all example code in this section are in [`FeaturesTests`][].
@@ -232,7 +244,7 @@ You can use [`JSON`][] type to handle complex structure.
     }
 ```
 
-## Customize JSON key with keeping `Codable` methods auto synthesis.
+## Customizing JSON key with keeping `Codable` methods auto synthesis
 
 You can customize JSON key for property with `Codable` methods auto synthesis.
 
@@ -279,7 +291,7 @@ You can customize JSON key for property with `Codable` methods auto synthesis.
     }
 ```
 
-## Default value for key absence
+## Default value for absent key
 
 You can specify default value for property which is used when JSON key is absent.
 
