@@ -32,7 +32,6 @@ class EncodeTests: XCTestCase {
     ]
   }
 }
-
 """
         XCTAssertEqual(json, expect)
     }
@@ -53,7 +52,6 @@ class EncodeTests: XCTestCase {
 {
 
 }
-
 """
             XCTAssertEqual(json, expect)
         }
@@ -66,7 +64,6 @@ class EncodeTests: XCTestCase {
 {
   "a": null
 }
-
 """
             XCTAssertEqual(json, expect)
         }

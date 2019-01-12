@@ -51,7 +51,6 @@ class JSONEncodeTests: XCTestCase {
 
   }
 }
-
 """
         
         XCTAssertEqual(json, expect)

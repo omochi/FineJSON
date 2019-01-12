@@ -20,7 +20,6 @@ class JSONSerialize: XCTestCase {
   "a": 1.234,
   "b": "hello"
 }
-
 """
             XCTAssertEqual(json, expect)
         }
@@ -35,7 +34,6 @@ class JSONSerialize: XCTestCase {
     "a": 1.234,
     "b": "hello"
 }
-
 """
             XCTAssertEqual(json, expect)
         }
@@ -51,7 +49,6 @@ class JSONSerialize: XCTestCase {
 \(t)"a": 1.234,
 \(t)"b": "hello"
 }
-
 """
             XCTAssertEqual(json, expect)
         }
@@ -91,7 +88,6 @@ class JSONSerialize: XCTestCase {
     "a": "a"
   }
 }
-
 """
         XCTAssertEqual(json, expect)
         

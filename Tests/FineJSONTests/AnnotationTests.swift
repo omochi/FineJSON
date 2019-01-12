@@ -15,7 +15,6 @@ class AnnotationTests: XCTestCase {
 {
   "user_name": "taro"
 }
-
 """
         let data = json.data(using: .utf8)!
         let decoder = FineJSONDecoder()

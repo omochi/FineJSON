@@ -81,16 +81,26 @@ extension JSON {
             try serialize(yajl_gen: yg)
         }
         
-        let result: Data
-
-        do {
+        func _result() throws -> Data {
             var buf: UnsafePointer<UInt8>? = nil
             var len: Int = 0
             try yajl_gen_get_buf(yg, &buf, &len).check()
             defer {
                 yajl_gen_clear(yg)
             }
-            result = Data(bytes: buf!, count: len)
+            return Data(bytes: buf!, count: len)
+        }
+        
+        var result = try _result()
+
+        // remove last newLine
+        while let lastByte = result.last {
+            if lastByte == 0x0a || lastByte == 0x0d {
+                result.removeLast()
+                continue
+            }
+            
+            break
         }
         
         return result
