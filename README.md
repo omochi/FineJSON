@@ -34,7 +34,7 @@ Encoder keeps JSON key order.
     }
 ```
 
-`Foundation.JSONEncoder` undefine key order. So you may get this.
+`Foundation.JSONEncoder` does not define key order. So you may get this.
 
 ```
 {
@@ -323,7 +323,7 @@ MIT.
 
 It includes [yajl](https://github.com/lloyd/yajl) which has ISC license.
 
-[`FeaturesTests`]: Tests/FineJSON/FeaturesTests.swift
+[`FeaturesTests`]: Tests/FineJSONTests/FeaturesTests.swift
 [`CodablePrimitiveJSONDecoder`]: Sources/FineJSON/CodablePrimitiveJSONDecoder.swift
 [`JSON`]: Sources/FineJSON/JSON.swift
 
