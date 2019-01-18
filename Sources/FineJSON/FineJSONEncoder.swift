@@ -1,4 +1,5 @@
 import Foundation
+import RichJSONParser
 
 public class FineJSONEncoder {
     public enum OptionalEncodingStrategy {
@@ -7,12 +8,12 @@ public class FineJSONEncoder {
     }
     
     public init() {
-        self.jsonSerializeOptions = JSON.SerializeOptions()
+        self.jsonSerializeOptions = JSONSerializeOptions()
         self.optionalEncodingStrategy = .keyAbsence
         self.userInfo = [:]
     }
     
-    public var jsonSerializeOptions: JSON.SerializeOptions
+    public var jsonSerializeOptions: JSONSerializeOptions
     public var optionalEncodingStrategy: OptionalEncodingStrategy
     public var userInfo: [CodingUserInfoKey: Any]
     
@@ -20,7 +21,9 @@ public class FineJSONEncoder {
         where T : Encodable
     {
         let json = try encodeToJSON(value)
-        return try json.serialize(options: jsonSerializeOptions)
+        let serializer = JSONSerializer()
+        serializer.options = jsonSerializeOptions
+        return serializer.serialize(json)
     }
     
     public func encodeToJSON<T>(_ value: T) throws -> JSON

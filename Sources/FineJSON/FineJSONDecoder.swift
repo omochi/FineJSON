@@ -1,4 +1,5 @@
 import Foundation
+import RichJSONParser
 
 public class FineJSONDecoder {
     public init() {
@@ -12,8 +13,9 @@ public class FineJSONDecoder {
     public func decode<T>(_ type: T.Type, from data: Data) throws -> T
         where T : Decodable
     {
-        let json = try JSON.parse(data: data)
-        return try decode(type, from: json)
+        let parser = JSONParser(data: data)
+        let json = try parser.parse()
+        return try decode(type, from: json.toJSON())
     }
     
     public func decode<T>(_ type: T.Type, from json: JSON) throws -> T

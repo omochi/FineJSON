@@ -1,5 +1,7 @@
 import Foundation
 import XCTest
+import OrderedDictionary
+import RichJSONParser
 import FineJSON
 
 class FeaturesTests: XCTestCase {
@@ -58,7 +60,7 @@ class FeaturesTests: XCTestCase {
     func testIndent4() throws {
         let a = A(a: 1, b: "b", c: 2, d: "d")
         let e = FineJSONEncoder()
-        e.jsonSerializeOptions = JSON.SerializeOptions(indentString: "    ")
+        e.jsonSerializeOptions = JSONSerializeOptions(indentString: "    ")
         let json = String(data: try e.encode(a), encoding: .utf8)!
         let expected = """
 {
@@ -74,7 +76,7 @@ class FeaturesTests: XCTestCase {
     func testOnelineFormat() throws {
         let a = A(a: 1, b: "b", c: 2, d: "d")
         let e = FineJSONEncoder()
-        e.jsonSerializeOptions = JSON.SerializeOptions(isPrettyPrint: false)
+        e.jsonSerializeOptions = JSONSerializeOptions(isPrettyPrint: false)
         let json = String(data: try e.encode(a), encoding: .utf8)!
         let expected = """
 {"a":1,"b":"b","c":2,"d":"d"}
@@ -151,12 +153,12 @@ class FeaturesTests: XCTestCase {
         let f = try d.decode(F.self, from: json.data(using: .utf8)!)
       
         XCTAssertEqual(f.name, "john")
-        XCTAssertEqual(f.data, JSON.array(JSONArray([
+        XCTAssertEqual(f.data, JSON.array([
             .string("aaa"),
-            .object(JSONObject([
+            .object(OrderedDictionary([
                 "bbb": .string("ccc")
                 ]))
-            ])))
+            ]))
     }
 
     struct G : Codable, JSONAnnotatable {

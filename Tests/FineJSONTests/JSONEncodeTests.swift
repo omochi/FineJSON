@@ -1,4 +1,6 @@
 import XCTest
+import OrderedDictionary
+import RichJSONParser
 import FineJSON
 
 class JSONEncodeTests: XCTestCase {
@@ -13,16 +15,16 @@ class JSONEncodeTests: XCTestCase {
     func test1() throws {
         let a = A(a: JSONNumber("0.123456789012345678901234567890"),
                   b: JSONArray([
-                    .number(JSONNumber("0.123456789012345678901234567890")),
+                    .number("0.123456789012345678901234567890"),
                     .string("aaa"),
-                    .array(JSONArray()),
-                    .object(JSONObject())
+                    .array([]),
+                    .object(OrderedDictionary())
                     ]),
                   c: JSONObject([
-                    "a": .number(JSONNumber("0.123456789012345678901234567890"))
+                    "a": .number("0.123456789012345678901234567890")
                     ]),
-                  d: .array(JSONArray()),
-                  e: .object(JSONObject()))
+                  d: .array([]),
+                  e: .object(OrderedDictionary()))
         
         let encoder = FineJSONEncoder()
         let data = try encoder.encode(a)
@@ -34,22 +36,14 @@ class JSONEncodeTests: XCTestCase {
   "b": [
     0.123456789012345678901234567890,
     "aaa",
-    [
-
-    ],
-    {
-
-    }
+    [],
+    {}
   ],
   "c": {
     "a": 0.123456789012345678901234567890
   },
-  "d": [
-
-  ],
-  "e": {
-
-  }
+  "d": [],
+  "e": {}
 }
 """
         

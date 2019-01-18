@@ -6,17 +6,17 @@
         "repositoryURL": "https://github.com/omochi/OrderedDictionary.git",
         "state": {
           "branch": null,
-          "revision": "633fdc3d658028b47947ac38e448685db155c11c",
-          "version": "1.5.0"
+          "revision": "ff5ad8a027588a8432638fc577ccc6517a887537",
+          "version": "1.6.0"
         }
       },
       {
-        "package": "yajl",
-        "repositoryURL": "https://github.com/omochi/yajl-swift-build.git",
+        "package": "RichJSONParser",
+        "repositoryURL": "https://github.com/omochi/RichJSONParser.git",
         "state": {
           "branch": null,
-          "revision": "056d0afeed0a1394915aaabf7d37b818bb2e86c7",
-          "version": "1.2.0"
+          "revision": "b93e6aa9426d652763b9095371160708ef2cc18a",
+          "version": "1.1.0"
         }
       }
     ]

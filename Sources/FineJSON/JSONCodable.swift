@@ -1,4 +1,5 @@
 import OrderedDictionary
+import RichJSONParser
 
 extension JSONNumber : Decodable {
     public init(from decoder: Decoder) throws {
@@ -89,13 +90,13 @@ extension JSON : Decodable {
         
         do {
             let object = try c.decode(JSONObject.self)
-            self = .object(object)
+            self = .object(object.value)
             return
         } catch {}
         
         do {
             let array = try c.decode(JSONArray.self)
-            self = .array(array)
+            self = .array(array.value)
             return
         } catch {}
         
@@ -107,7 +108,7 @@ extension JSON : Decodable {
         
         do {
             let number = try c.decode(JSONNumber.self)
-            self = .number(number)
+            self = .number(number.value)
             return
         } catch {}
         

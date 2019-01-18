@@ -1,4 +1,5 @@
 import Foundation
+import RichJSONParser
 
 internal struct UnkeyedDC : UnkeyedDecodingContainer {
     let decoder: _Decoder
@@ -12,7 +13,7 @@ internal struct UnkeyedDC : UnkeyedDecodingContainer {
         
         switch value {
         case .array(let value):
-            self.array = value
+            self.array = JSONArray(value)
         default:
             let dd = "expected array but \(value.typeName)"
             let ctx = DecodingError.Context(codingPath: decoder.codingPath, debugDescription: dd)

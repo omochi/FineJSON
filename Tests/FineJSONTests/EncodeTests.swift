@@ -49,9 +49,7 @@ class EncodeTests: XCTestCase {
             let data = try encoder.encode(a)
             let json = String(data: data, encoding: .utf8)!
             let expect = """
-{
-
-}
+{}
 """
             XCTAssertEqual(json, expect)
         }

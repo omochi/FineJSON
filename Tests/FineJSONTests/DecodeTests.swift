@@ -1,4 +1,5 @@
 import XCTest
+import RichJSONParser
 import FineJSON
 
 final class DecodeTests: XCTestCase {
@@ -66,8 +67,7 @@ final class DecodeTests: XCTestCase {
             _ = try decoder.decode(B.self, from: data)
             XCTFail("no error")
         } catch {
-            let m = "\(error)"
-            XCTAssertTrue(m.contains("parse error"))
+            XCTAssertTrue(error is JSONParser.Error)
         }
     }
     

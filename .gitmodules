@@ -4,3 +4,6 @@
 [submodule "Carthage/Checkouts/OrderedDictionary"]
 	path = Carthage/Checkouts/OrderedDictionary
 	url = https://github.com/omochi/OrderedDictionary.git
+[submodule "Carthage/Checkouts/RichJSONParser"]
+	path = Carthage/Checkouts/RichJSONParser
+	url = https://github.com/omochi/RichJSONParser.git

@@ -1,4 +1,5 @@
 import Foundation
+import RichJSONParser
 
 internal struct SingleDC : SingleValueDecodingContainer {
     let decoder: _Decoder
@@ -40,17 +41,17 @@ internal struct SingleDC : SingleValueDecodingContainer {
         if type == JSONObject.self,
             case .object(let object) = value
         {
-            return object as! T
+            return JSONObject(object) as! T
         }
         if type == JSONArray.self,
             case .array(let array) = value
         {
-            return array as! T
+            return JSONArray(array) as! T
         }
         if type == JSONNumber.self,
             case .number(let number) = value
         {
-            return number as! T
+            return JSONNumber(number) as! T
         }
         
         let decoder = _Decoder(json: self.value,

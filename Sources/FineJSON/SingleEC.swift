@@ -1,4 +1,5 @@
 import Foundation
+import RichJSONParser
 
 internal struct SingleEC : SingleValueEncodingContainer {
     let encoder : _Encoder
@@ -20,51 +21,51 @@ internal struct SingleEC : SingleValueEncodingContainer {
     }
     
     func encode(_ value: Int) {
-        write(.number(JSONNumber("\(value)")))
+        write(.number("\(value)"))
     }
     
     func encode(_ value: Int8) {
-        write(.number(JSONNumber("\(value)")))
+        write(.number("\(value)"))
     }
     
     func encode(_ value: Int16) {
-        write(.number(JSONNumber("\(value)")))
+        write(.number("\(value)"))
     }
     
     func encode(_ value: Int32) {
-        write(.number(JSONNumber("\(value)")))
+        write(.number("\(value)"))
     }
     
     func encode(_ value: Int64) {
-        write(.number(JSONNumber("\(value)")))
+        write(.number("\(value)"))
     }
     
     func encode(_ value: UInt) {
-        write(.number(JSONNumber("\(value)")))
+        write(.number("\(value)"))
     }
     
     func encode(_ value: UInt8) {
-        write(.number(JSONNumber("\(value)")))
+        write(.number("\(value)"))
     }
     
     func encode(_ value: UInt16) {
-        write(.number(JSONNumber("\(value)")))
+        write(.number("\(value)"))
     }
     
     func encode(_ value: UInt32) {
-        write(.number(JSONNumber("\(value)")))
+        write(.number("\(value)"))
     }
     
     func encode(_ value: UInt64) {
-        write(.number(JSONNumber("\(value)")))
+        write(.number("\(value)"))
     }
     
     func encode(_ value: Float) {
-        write(.number(JSONNumber(String(format: "%f", value))))
+        write(.number(String(format: "%f", value)))
     }
     
     func encode(_ value: Double) {
-        write(.number(JSONNumber(String(format: "%f", value))))
+        write(.number(String(format: "%f", value)))
     }
     
     func encode(_ value: String) {
@@ -77,15 +78,15 @@ internal struct SingleEC : SingleValueEncodingContainer {
             return
         }
         if let object = value as? JSONObject {
-            write(.object(object))
+            write(.object(object.value))
             return
         }
         if let array = value as? JSONArray {
-            write(.array(array))
+            write(.array(array.value))
             return
         }
         if let number = value as? JSONNumber {
-            write(.number(number))
+            write(.number(number.value))
             return
         }
         

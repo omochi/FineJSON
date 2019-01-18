@@ -1,3 +1,5 @@
+import RichJSONParser
+
 public protocol CodablePrimitiveJSONDecoder {
     func decode(_ type: Bool.Type, from json: JSON) -> Bool?
     func decode(_ type: Int.Type, from json: JSON) -> Int?

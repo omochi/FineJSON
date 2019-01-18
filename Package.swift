@@ -9,11 +9,10 @@ let package = Package(
         .library(name: "FineJSON", targets: ["FineJSON"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/omochi/yajl-swift-build.git", .upToNextMajor(from: "1.0.0")),
-        .package(url: "https://github.com/omochi/OrderedDictionary.git", .upToNextMajor(from: "1.0.0")),
+        .package(url: "https://github.com/omochi/RichJSONParser.git", .upToNextMajor(from: "1.0.0")),
     ],
     targets: [
-        .target(name: "FineJSON", dependencies: ["yajl", "OrderedDictionary"]),
+        .target(name: "FineJSON", dependencies: ["RichJSONParser"]),
         .testTarget(name: "FineJSONTests", dependencies: ["FineJSON"]),
     ]
 )

@@ -1,4 +1,5 @@
 import Foundation
+import RichJSONParser
 
 public class WeakTypingPrimitiveJSONDecoder : CodablePrimitiveJSONDecoder {
     private func decodeNSNumber(from json: JSON) -> NSNumber? {
@@ -6,7 +7,7 @@ public class WeakTypingPrimitiveJSONDecoder : CodablePrimitiveJSONDecoder {
         case .boolean(let b):
             return NSNumber(value: b)
         case .number(let num):
-            return decodeNSNumber(string: num.value)
+            return decodeNSNumber(string: num)
         case .string(let str):
             return decodeNSNumber(string: str)
         default:
@@ -74,7 +75,7 @@ public class WeakTypingPrimitiveJSONDecoder : CodablePrimitiveJSONDecoder {
     public func decode(_ type: String.Type, from json: JSON) -> String? {
         switch json {
         case .number(let num):
-            return num.value
+            return num
         case .string(let str):
             return str
         default:

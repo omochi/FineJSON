@@ -1,4 +1,6 @@
 import Foundation
+import OrderedDictionary
+import RichJSONParser
 
 internal struct KeyedDC<Key> : KeyedDecodingContainerProtocol
     where Key : CodingKey
@@ -12,7 +14,7 @@ internal struct KeyedDC<Key> : KeyedDecodingContainerProtocol
         
         switch value {
         case .object(let value):
-            self.object = value
+            self.object = JSONObject(value)
         default:
             let dd = "expected object but \(value.typeName)"
             let ctx = DecodingError.Context(codingPath: decoder.codingPath, debugDescription: dd)

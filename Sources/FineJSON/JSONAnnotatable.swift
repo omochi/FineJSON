@@ -1,3 +1,4 @@
+import RichJSONParser
 
 public typealias JSONKeyAnnotations = [String: JSONKeyAnnotation]
 
