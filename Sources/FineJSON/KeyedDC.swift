@@ -110,7 +110,7 @@ internal struct KeyedDC<Key> : KeyedDecodingContainerProtocol
     }
     
     private func jsonKey(for originalKey: String) -> String {
-        if let ano = keyAnnotations(originalKey: originalKey),
+        if let ano = decoder.keyAnnotations?[originalKey],
             let jsonKey = ano.jsonKey
         {
             return jsonKey
@@ -120,27 +120,23 @@ internal struct KeyedDC<Key> : KeyedDecodingContainerProtocol
     }
     
     private func jsonValue(for originalKey: String, jsonKey: String) -> ParsedJSON? {
+        let ano = decoder.keyAnnotations?[originalKey]
+        if let ano = ano, ano.isSourceLocationKey
+        {
+            let loc = decoder._sourceLocation
+            return loc.encodeToJSON().toParsedJSON(dummyLocation: loc)
+        }
+        
         if let elem = object[jsonKey] {
             return elem
         }
         
-        if let ano = keyAnnotations(originalKey: originalKey),
-            let def = ano.defaultValue
+        if let ano = ano, let def = ano.defaultValue
         {
             return def.toParsedJSON(dummyLocation: SourceLocation())
         }
         
         return nil
-    }
-    
-    private func keyAnnotations(originalKey: String) -> JSONKeyAnnotation? {
-        guard let type = decoder.decodingType,
-            let anoType = type as? JSONAnnotatable.Type,
-            let ano = anoType.keyAnnotations[originalKey] else
-        {
-            return nil
-        }
-        return ano
     }
     
     private func noKeyIsNil(jsonKey: String, codingPath: [CodingKey]) -> Bool {

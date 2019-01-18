@@ -15,11 +15,14 @@ extension JSONAnnotatable {
 public struct JSONKeyAnnotation {
     public var jsonKey: String?
     public var defaultValue: JSON?
+    public var isSourceLocationKey: Bool
     
     public init(jsonKey: String? = nil,
-                defaultValue: JSON? = nil)
+                defaultValue: JSON? = nil,
+                isSourceLocationKey: Bool = false)
     {
         self.jsonKey = jsonKey
         self.defaultValue = defaultValue
+        self.isSourceLocationKey = isSourceLocationKey
     }
 }

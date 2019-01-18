@@ -27,6 +27,9 @@
 		D69762D521F1D11D00C519F1 /* JSONNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69762D421F1D11D00C519F1 /* JSONNumber.swift */; };
 		D69762D721F1D13800C519F1 /* JSONArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69762D621F1D13800C519F1 /* JSONArray.swift */; };
 		D69762D921F1D14D00C519F1 /* JSONObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69762D821F1D14D00C519F1 /* JSONObject.swift */; };
+		D69762DB21F1DCCA00C519F1 /* SourceLocationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69762DA21F1DCCA00C519F1 /* SourceLocationTests.swift */; };
+		D69762DD21F1DD5100C519F1 /* DecoderExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69762DC21F1DD5100C519F1 /* DecoderExtension.swift */; };
+		D69762DF21F1DFF700C519F1 /* SourceLocationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69762DE21F1DFF700C519F1 /* SourceLocationExtension.swift */; };
 		D6F9AC1F21E8564000AB5C0A /* JSONDecodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F9AC1E21E8564000AB5C0A /* JSONDecodeTests.swift */; };
 		D6F9AC2121E857A200AB5C0A /* JSONCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F9AC2021E857A200AB5C0A /* JSONCodable.swift */; };
 		D6F9AC2321E857D500AB5C0A /* JSONEquatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F9AC2221E857D500AB5C0A /* JSONEquatable.swift */; };
@@ -75,6 +78,9 @@
 		D69762D421F1D11D00C519F1 /* JSONNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONNumber.swift; sourceTree = "<group>"; };
 		D69762D621F1D13800C519F1 /* JSONArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONArray.swift; sourceTree = "<group>"; };
 		D69762D821F1D14D00C519F1 /* JSONObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONObject.swift; sourceTree = "<group>"; };
+		D69762DA21F1DCCA00C519F1 /* SourceLocationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceLocationTests.swift; sourceTree = "<group>"; };
+		D69762DC21F1DD5100C519F1 /* DecoderExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecoderExtension.swift; sourceTree = "<group>"; };
+		D69762DE21F1DFF700C519F1 /* SourceLocationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceLocationExtension.swift; sourceTree = "<group>"; };
 		D6F9AC1E21E8564000AB5C0A /* JSONDecodeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONDecodeTests.swift; sourceTree = "<group>"; };
 		D6F9AC2021E857A200AB5C0A /* JSONCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONCodable.swift; sourceTree = "<group>"; };
 		D6F9AC2221E857D500AB5C0A /* JSONEquatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONEquatable.swift; sourceTree = "<group>"; };
@@ -158,6 +164,8 @@
 				D68BB2F121E6509700B054F1 /* CodablePrimitive.swift */,
 				D68BB34121E666DC00B054F1 /* WeakTypingPrimitiveJSONDecoder.swift */,
 				D6F9AC3021E88D5900AB5C0A /* BoxedJSON.swift */,
+				D69762DC21F1DD5100C519F1 /* DecoderExtension.swift */,
+				D69762DE21F1DFF700C519F1 /* SourceLocationExtension.swift */,
 			);
 			name = src;
 			path = ../../Sources/FineJSON;
@@ -195,6 +203,7 @@
 				D6F9AC2621E86CA300AB5C0A /* JSONSerialize.swift */,
 				D6F9AC3421E89B5700AB5C0A /* EncodeTests.swift */,
 				D6F9AC3621E89CF700AB5C0A /* JSONEncodeTests.swift */,
+				D69762DA21F1DCCA00C519F1 /* SourceLocationTests.swift */,
 			);
 			name = src;
 			path = ../../Tests/FineJSONTests;
@@ -312,11 +321,13 @@
 				D6F9AC2321E857D500AB5C0A /* JSONEquatable.swift in Sources */,
 				D68BB2F421E6509700B054F1 /* FineJSONDecoder.swift in Sources */,
 				D6F9AC2121E857A200AB5C0A /* JSONCodable.swift in Sources */,
+				D69762DF21F1DFF700C519F1 /* SourceLocationExtension.swift in Sources */,
 				D68BB2F621E6509700B054F1 /* CodablePrimitive.swift in Sources */,
 				D68BB2F521E6509700B054F1 /* CodablePrimitiveJSONDecoder.swift in Sources */,
 				D68BB34221E666DC00B054F1 /* WeakTypingPrimitiveJSONDecoder.swift in Sources */,
 				D6F9AC2B21E87AF000AB5C0A /* SingleEC.swift in Sources */,
 				D6F9AC3321E8955700AB5C0A /* KeyedEC.swift in Sources */,
+				D69762DD21F1DD5100C519F1 /* DecoderExtension.swift in Sources */,
 				D68BB34421E681F300B054F1 /* UnkeyedDC.swift in Sources */,
 				D6F9AC2D21E880EC00AB5C0A /* UnkeyedEC.swift in Sources */,
 				D68BB36421E8BA2F00B054F1 /* JSONAnnotatable.swift in Sources */,
@@ -340,6 +351,7 @@
 				D6F9AC3721E89CF700AB5C0A /* JSONEncodeTests.swift in Sources */,
 				D68BB36821E9611D00B054F1 /* FeaturesTests.swift in Sources */,
 				D6F9AC3521E89B5700AB5C0A /* EncodeTests.swift in Sources */,
+				D69762DB21F1DCCA00C519F1 /* SourceLocationTests.swift in Sources */,
 				D68BB35E21E7E60000B054F1 /* DecodeTests.swift in Sources */,
 				D68BB36621E8C08F00B054F1 /* AnnotationTests.swift in Sources */,
 				D6F9AC1F21E8564000AB5C0A /* JSONDecodeTests.swift in Sources */,

@@ -91,31 +91,33 @@ internal struct KeyedEC<Key> : KeyedEncodingContainerProtocol where Key : Coding
     {
         let codingPath = self.codingPath + [key]
         
-        let jsonKey = self.jsonKey(for: key)
+        let originalKey = key.stringValue
+        let jsonKey = self.jsonKey(for: originalKey)
         
         let elementBox = BoxedJSON(.null)
         
-        self.value[jsonKey] = elementBox
+        if let ano = encoder.keyAnnotations?[originalKey],
+            ano.isSourceLocationKey {
+            // skip
+        } else {
+            self.value[jsonKey] = elementBox
+        }
         
-        let encoder = _Encoder(codingPath: codingPath,
-                               options: self.encoder.options,
-                               box: elementBox,
-                               encodingType: nil)
-        return try encode(encoder)
+        let elementEncoder = _Encoder(codingPath: codingPath,
+                                      options: self.encoder.options,
+                                      box: elementBox,
+                                      encodingType: nil)
+        return try encode(elementEncoder)
     }
     
-    private func jsonKey(for codingKey: CodingKey) -> String {
-        let origKey = codingKey.stringValue
-        
-        if let type = encoder.encodingType,
-            let anoType = type as? JSONAnnotatable.Type,
-            let ano = anoType.keyAnnotations[origKey],
+    private func jsonKey(for originalKey: String) -> String {
+        if let ano = encoder.keyAnnotations?[originalKey],
             let jsonKey = ano.jsonKey
         {
             return jsonKey
         }
         
-        return origKey
+        return originalKey
     }
 }
 

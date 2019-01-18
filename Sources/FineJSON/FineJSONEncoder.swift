@@ -53,6 +53,7 @@ internal class _Encoder : Swift.Encoder {
     public let options: Options
     public let box: BoxedJSON
     public let encodingType: Any.Type?
+    public let keyAnnotations: JSONKeyAnnotations?
     
     public init(codingPath: [CodingKey],
                 options: Options,
@@ -63,6 +64,7 @@ internal class _Encoder : Swift.Encoder {
         self.options = options
         self.box = box
         self.encodingType = encodingType
+        self.keyAnnotations = (encodingType as? JSONAnnotatable.Type)?.keyAnnotations
     }
     
     public var userInfo: [CodingUserInfoKey : Any] {

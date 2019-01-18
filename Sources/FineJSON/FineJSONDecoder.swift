@@ -41,6 +41,7 @@ internal class _Decoder : Decoder {
     public let json: ParsedJSON
     public let options: Options
     public let decodingType: Any.Type?
+    public let keyAnnotations: JSONKeyAnnotations?
 
     public init(json: ParsedJSON,
                 codingPath: [CodingKey],
@@ -51,6 +52,11 @@ internal class _Decoder : Decoder {
         self.codingPath = codingPath
         self.options = options
         self.decodingType = decodingType
+        self.keyAnnotations = (decodingType as? JSONAnnotatable.Type)?.keyAnnotations
+    }
+    
+    public var _sourceLocation: SourceLocation {
+        return json.location
     }
     
     public var userInfo: [CodingUserInfoKey : Any] {
