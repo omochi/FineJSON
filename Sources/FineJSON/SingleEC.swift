@@ -98,6 +98,6 @@ internal struct SingleEC : SingleValueEncodingContainer {
     }
     
     private func write(_ json: JSON) {
-        encoder.box.value = BoxJSON.Value(json)
+        encoder.box.value = BoxedJSON.Value(json)
     }
 }

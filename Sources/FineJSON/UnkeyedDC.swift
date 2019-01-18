@@ -4,18 +4,18 @@ import RichJSONParser
 internal struct UnkeyedDC : UnkeyedDecodingContainer {
     let decoder: _Decoder
     
-    let array: JSONArray
+    let array: [ParsedJSON]
     
-    init(decoder: _Decoder, value: JSON) throws {
+    init(decoder: _Decoder, json: ParsedJSON) throws {
         self.decoder = decoder
         
         self.currentIndex = 0
         
-        switch value {
-        case .array(let value):
-            self.array = JSONArray(value)
+        switch json.value {
+        case .array(let a):
+            self.array = a
         default:
-            let dd = "expected array but \(value.typeName)"
+            let dd = "expected array but \(json.value.kind)"
             let ctx = DecodingError.Context(codingPath: decoder.codingPath, debugDescription: dd)
             throw DecodingError.typeMismatch(JSONArray.self, ctx)
         }
@@ -25,7 +25,7 @@ internal struct UnkeyedDC : UnkeyedDecodingContainer {
         return decoder.codingPath
     }
     
-    var _count: Int { return array.value.count }
+    var _count: Int { return array.count }
     
     var count: Int? { return _count }
     
@@ -75,7 +75,7 @@ internal struct UnkeyedDC : UnkeyedDecodingContainer {
             throw DecodingError.valueNotFound(JSON.self, ctx)
         }
         
-        let elem = array.value[currentIndex]
+        let elem = array[currentIndex]
         currentIndex += 1
         let decoder = _Decoder(json: elem,
                                codingPath: codingPath,

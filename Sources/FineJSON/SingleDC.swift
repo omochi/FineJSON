@@ -4,11 +4,11 @@ import RichJSONParser
 internal struct SingleDC : SingleValueDecodingContainer {
     let decoder: _Decoder
     
-    var value: JSON {
-        return decoder.value
+    var json: ParsedJSON {
+        return decoder.json
     }
     
-    init(decoder: _Decoder, value: JSON) {
+    init(decoder: _Decoder, json: ParsedJSON) {
         self.decoder = decoder
     }
     
@@ -17,7 +17,7 @@ internal struct SingleDC : SingleValueDecodingContainer {
     }
     
     func decodeNil() -> Bool {
-        switch value {
+        switch json.value {
         case .null: return true
         default: return false
         }
@@ -25,8 +25,8 @@ internal struct SingleDC : SingleValueDecodingContainer {
     
     func decode<X>(_ type: X.Type) throws -> X where X : CodablePrimitive {
         let pd = decoder.options.primitiveDecoder
-        guard let x = pd.decodePrimitive(type, from: value) else {
-            let dd = "decode \(type) from json \(value.typeName) failed"
+        guard let x = pd.decodePrimitive(type, from: json) else {
+            let dd = "decode \(type) from json \(json.value.kind) failed"
             let ctx = DecodingError.Context(codingPath: codingPath,
                                             debugDescription: dd)
             throw DecodingError.typeMismatch(type, ctx)
@@ -35,30 +35,29 @@ internal struct SingleDC : SingleValueDecodingContainer {
     }
     
     func decode<T>(_ type: T.Type) throws -> T where T : Decodable {
-        if type == JSON.self {
-            return value as! T
-        }
-        if type == JSONObject.self,
-            case .object(let object) = value
+        if type == ParsedJSON.self {
+            return json as! T
+        } else if type == JSON.self {
+            return json.toJSON() as! T
+        } else if type == JSONObject.self,
+            case .object(let object) = json.value
         {
-            return JSONObject(object) as! T
-        }
-        if type == JSONArray.self,
-            case .array(let array) = value
+            return JSONObject(object.mapValues { $0.toJSON() }) as! T
+        } else if type == JSONArray.self,
+            case .array(let array) = json.value
         {
-            return JSONArray(array) as! T
-        }
-        if type == JSONNumber.self,
-            case .number(let number) = value
+            return JSONArray(array.map { $0.toJSON() }) as! T
+        } else if type == JSONNumber.self,
+            case .number(let number) = json.value
         {
             return JSONNumber(number) as! T
+        } else {
+            let decoder = _Decoder(json: json,
+                                   codingPath: self.codingPath,
+                                   options: self.decoder.options,
+                                   decodingType: type)
+            
+            return try type.init(from: decoder)
         }
-        
-        let decoder = _Decoder(json: self.value,
-                               codingPath: self.codingPath,
-                               options: self.decoder.options,
-                               decodingType: type)
-        
-        return try type.init(from: decoder)
     }
 }

@@ -2,14 +2,14 @@ import Foundation
 import OrderedDictionary
 import RichJSONParser
 
-internal class BoxJSON {
+internal class BoxedJSON {
     enum Value {
         case null
         case boolean(Bool)
         case number(String)
         case string(String)
-        case array([BoxJSON])
-        case object(OrderedDictionary<String, BoxJSON>)
+        case array([BoxedJSON])
+        case object(OrderedDictionary<String, BoxedJSON>)
         
         init(_ json: JSON) {
             switch json {
@@ -46,7 +46,7 @@ internal class BoxJSON {
 }
 
 extension JSON {
-    func box() -> BoxJSON {
-        return BoxJSON(BoxJSON.Value(self))
+    func box() -> BoxedJSON {
+        return BoxedJSON(BoxedJSON.Value(self))
     }
 }

@@ -11,7 +11,7 @@ internal struct KeyedEC<Key> : KeyedEncodingContainerProtocol where Key : Coding
         valueDidSet()
     }
     
-    var value: OrderedDictionary<String, BoxJSON> {
+    var value: OrderedDictionary<String, BoxedJSON> {
         didSet {
             valueDidSet()
         }
@@ -93,7 +93,7 @@ internal struct KeyedEC<Key> : KeyedEncodingContainerProtocol where Key : Coding
         
         let jsonKey = self.jsonKey(for: key)
         
-        let elementBox = BoxJSON(.null)
+        let elementBox = BoxedJSON(.null)
         
         self.value[jsonKey] = elementBox
         

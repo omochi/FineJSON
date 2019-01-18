@@ -15,10 +15,10 @@ public class FineJSONDecoder {
     {
         let parser = JSONParser(data: data)
         let json = try parser.parse()
-        return try decode(type, from: json.toJSON())
+        return try decode(type, from: json)
     }
     
-    public func decode<T>(_ type: T.Type, from json: JSON) throws -> T
+    public func decode<T>(_ type: T.Type, from json: ParsedJSON) throws -> T
         where T : Decodable
     {
         let opts =  _Decoder.Options(primitiveDecoder: primitiveDecoder,
@@ -38,16 +38,16 @@ internal class _Decoder : Decoder {
     }
     
     public let codingPath: [CodingKey]
-    public let value: JSON
+    public let json: ParsedJSON
     public let options: Options
     public let decodingType: Any.Type?
 
-    public init(json: JSON,
+    public init(json: ParsedJSON,
                 codingPath: [CodingKey],
                 options: Options,
                 decodingType: Any.Type?)
     {
-        self.value = json
+        self.json = json
         self.codingPath = codingPath
         self.options = options
         self.decodingType = decodingType
@@ -60,16 +60,16 @@ internal class _Decoder : Decoder {
     public func container<Key>(keyedBy type: Key.Type) throws -> KeyedDecodingContainer<Key>
         where Key : CodingKey
     {
-        let c = try KeyedDC(decoder: self, value: value, keyType: type)
+        let c = try KeyedDC(decoder: self, json: json, keyType: type)
         return KeyedDecodingContainer<Key>(c)
     }
     
     public func unkeyedContainer() throws -> UnkeyedDecodingContainer {
-        return try UnkeyedDC(decoder: self, value: value)
+        return try UnkeyedDC(decoder: self, json: json)
     }
     
     public func singleValueContainer() -> SingleValueDecodingContainer {
-        return SingleDC(decoder: self, value: value)
+        return SingleDC(decoder: self, json: json)
     }
 }
 

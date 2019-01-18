@@ -10,7 +10,7 @@ internal struct UnkeyedEC : UnkeyedEncodingContainer {
         valueDidSet()
     }
     
-    var value: [BoxJSON] {
+    var value: [BoxedJSON] {
         didSet {
             valueDidSet()
         }
@@ -67,7 +67,7 @@ internal struct UnkeyedEC : UnkeyedEncodingContainer {
         
         let codingPath = self.codingPath + [JSONArray.Index(index)]
         
-        let elementBox = BoxJSON(.null)
+        let elementBox = BoxedJSON(.null)
         
         self.value.append(elementBox)
         

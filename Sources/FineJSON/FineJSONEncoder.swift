@@ -29,7 +29,7 @@ public class FineJSONEncoder {
     public func encodeToJSON<T>(_ value: T) throws -> JSON
         where T : Encodable
     {
-        let box = BoxJSON(.null)
+        let box = BoxedJSON(.null)
         let opts = _Encoder.Options(
             optionalEncodingStrategy: optionalEncodingStrategy,
             userInfo: userInfo)
@@ -51,12 +51,12 @@ internal class _Encoder : Swift.Encoder {
     
     public let codingPath: [CodingKey]
     public let options: Options
-    public let box: BoxJSON
+    public let box: BoxedJSON
     public let encodingType: Any.Type?
     
     public init(codingPath: [CodingKey],
                 options: Options,
-                box: BoxJSON,
+                box: BoxedJSON,
                 encodingType: Any.Type?)
     {
         self.codingPath = codingPath

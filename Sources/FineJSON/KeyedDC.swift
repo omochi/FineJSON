@@ -7,16 +7,16 @@ internal struct KeyedDC<Key> : KeyedDecodingContainerProtocol
 {
     let decoder: _Decoder
     
-    let object: JSONObject
+    let object: OrderedDictionary<String, ParsedJSON>
     
-    init(decoder: _Decoder, value: JSON, keyType: Key.Type) throws {
+    init(decoder: _Decoder, json: ParsedJSON, keyType: Key.Type) throws {
         self.decoder = decoder
         
-        switch value {
-        case .object(let value):
-            self.object = JSONObject(value)
+        switch json.value {
+        case .object(let o):
+            self.object = o
         default:
-            let dd = "expected object but \(value.typeName)"
+            let dd = "expected object but \(json.value.kind)"
             let ctx = DecodingError.Context(codingPath: decoder.codingPath, debugDescription: dd)
             throw DecodingError.typeMismatch(JSONObject.self, ctx)
         }
@@ -27,7 +27,7 @@ internal struct KeyedDC<Key> : KeyedDecodingContainerProtocol
     }
     
     var allKeys: [Key] {
-        return object.value.keys.compactMap { Key(stringValue: $0) }
+        return object.keys.compactMap { Key(stringValue: $0) }
     }
     
     func contains(_ key: Key) -> Bool {
@@ -119,15 +119,15 @@ internal struct KeyedDC<Key> : KeyedDecodingContainerProtocol
         return originalKey
     }
     
-    private func jsonValue(for originalKey: String, jsonKey: String) -> JSON? {
-        if let elem = object.value[jsonKey] {
+    private func jsonValue(for originalKey: String, jsonKey: String) -> ParsedJSON? {
+        if let elem = object[jsonKey] {
             return elem
         }
         
         if let ano = keyAnnotations(originalKey: originalKey),
             let def = ano.defaultValue
         {
-            return def
+            return def.toParsedJSON(dummyLocation: SourceLocation())
         }
         
         return nil
