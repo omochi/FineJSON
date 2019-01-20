@@ -12,6 +12,10 @@ public enum DecodingError : Swift.Error {
     case outOfRange(
         codingPath: [CodingKey],
         location: SourceLocation?)
+    case custom(
+        message: String,
+        codingPath: [CodingKey],
+        location: SourceLocation?)
 }
 
 extension DecodingError : CustomStringConvertible {
@@ -42,17 +46,22 @@ extension DecodingError : CustomStringConvertible {
                            codingPath: let cp,
                            location: let loc):
             let parts = ["type=\(type)", m, codingPathString(cp), locationString(loc)]
-            return "type mismatch " + parts.joined(separator: ", ")
+            return "type mismatch: " + parts.joined(separator: ", ")
         case .keyNotFound(let key,
                           codingPath: let cp,
                           location: let loc):
             
             let parts = ["key=\(key)", codingPathString(cp), locationString(loc)]
-            return "key not found " + parts.joined(separator: ", ")
+            return "key not found: " + parts.joined(separator: ", ")
         case .outOfRange(codingPath: let cp,
                          location: let loc):
             let parts = [codingPathString(cp), locationString(loc)]
-            return "out of range "  + parts.joined(separator: ", ")
+            return "out of range: "  + parts.joined(separator: ", ")
+        case .custom(message: let m,
+                     codingPath: let cp,
+                     location: let loc):
+            let parts = [m, codingPathString(cp), locationString(loc)]
+            return "decoding error: " + parts.joined(separator: ", ")
         }
     }
     
