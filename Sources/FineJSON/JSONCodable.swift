@@ -26,10 +26,10 @@ extension JSONNumber : Decodable {
             return
         } catch {}
         
-        let dd = "value is not number"
-        let ctx = DecodingError.Context(codingPath: decoder.codingPath,
-                                        debugDescription: dd)
-        throw DecodingError.typeMismatch(JSONNumber.self, ctx)
+        throw DecodingError.typeMismatch(JSONNumber.self,
+                                         message: "value is not number",
+                                         codingPath: decoder.codingPath,
+                                         location: decoder.sourceLocation)
     }
 }
 
@@ -123,10 +123,10 @@ extension JSON : Decodable {
             return
         }
         
-        let dd = "any json type can not be decoded"
-        let ctx = DecodingError.Context(codingPath: decoder.codingPath,
-                                        debugDescription: dd)
-        throw DecodingError.typeMismatch(JSON.self, ctx)
+        throw DecodingError.typeMismatch(JSON.self,
+                                         message: "any json type can not be decoded",
+                                         codingPath: decoder.codingPath,
+                                         location: decoder.sourceLocation)
     }
 }
 

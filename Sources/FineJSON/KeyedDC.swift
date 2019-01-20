@@ -16,9 +16,11 @@ internal struct KeyedDC<Key> : KeyedDecodingContainerProtocol
         case .object(let o):
             self.object = o
         default:
-            let dd = "expected object but \(json.value.kind)"
-            let ctx = DecodingError.Context(codingPath: decoder.codingPath, debugDescription: dd)
-            throw DecodingError.typeMismatch(JSONObject.self, ctx)
+            let m = "expected object but \(json.value.kind)"
+            throw DecodingError.typeMismatch(JSONObject.self,
+                                             message: m,
+                                             codingPath: decoder.codingPath,
+                                             location: decoder.sourceLocation)
         }
     }
     
@@ -144,8 +146,8 @@ internal struct KeyedDC<Key> : KeyedDecodingContainerProtocol
     }
     
     private func throwNoKeyError<R>(jsonKey: String, codingPath: [CodingKey]) throws -> R {
-        let dd = "No value associated with key \(jsonKey)"
-        let ctx = DecodingError.Context(codingPath: codingPath, debugDescription: dd)
-        throw DecodingError.keyNotFound(JSONObject.Key(jsonKey), ctx)
+        throw DecodingError.keyNotFound(jsonKey,
+                                        codingPath: codingPath,
+                                        location: decoder.sourceLocation)
     }
 }

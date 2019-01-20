@@ -15,9 +15,11 @@ internal struct UnkeyedDC : UnkeyedDecodingContainer {
         case .array(let a):
             self.array = a
         default:
-            let dd = "expected array but \(json.value.kind)"
-            let ctx = DecodingError.Context(codingPath: decoder.codingPath, debugDescription: dd)
-            throw DecodingError.typeMismatch(JSONArray.self, ctx)
+            let m = "expected array but \(json.value.kind)"
+            throw DecodingError.typeMismatch(JSONArray.self,
+                                             message: m,
+                                             codingPath: decoder.codingPath,
+                                             location: decoder.sourceLocation)
         }
     }
     
@@ -70,9 +72,8 @@ internal struct UnkeyedDC : UnkeyedDecodingContainer {
         let codingPath = self.codingPath + [JSONArray.Index(currentIndex)]
         
         guard !isAtEnd else {
-            let dd = "unkeyed container is at end"
-            let ctx = DecodingError.Context(codingPath: codingPath, debugDescription: dd)
-            throw DecodingError.valueNotFound(JSON.self, ctx)
+            throw DecodingError.outOfRange(codingPath: codingPath,
+                                           location: self.decoder.sourceLocation)
         }
         
         let elem = array[currentIndex]

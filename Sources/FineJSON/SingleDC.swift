@@ -26,10 +26,11 @@ internal struct SingleDC : SingleValueDecodingContainer {
     func decode<X>(_ type: X.Type) throws -> X where X : CodablePrimitive {
         let pd = decoder.options.primitiveDecoder
         guard let x = pd.decodePrimitive(type, from: json) else {
-            let dd = "decode \(type) from json \(json.value.kind) failed"
-            let ctx = DecodingError.Context(codingPath: codingPath,
-                                            debugDescription: dd)
-            throw DecodingError.typeMismatch(type, ctx)
+            let m = "decode primitive \(type) from json \(json.value.kind) failed"
+            throw DecodingError.typeMismatch(type,
+                                             message: m,
+                                             codingPath: codingPath,
+                                             location: decoder.sourceLocation)
         }
         return x
     }
