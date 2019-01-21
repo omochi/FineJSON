@@ -52,6 +52,12 @@ final class DecodeTests: XCTestCase {
         var a: String
         var b: Int
     }
+    
+    struct K : LocalizedError, CustomStringConvertible {
+        var description: String {
+            return "kkk"
+        }
+    }
 
     func testBrokenJSON() throws {
         let json = """
@@ -63,12 +69,7 @@ final class DecodeTests: XCTestCase {
         let data = json.data(using: .utf8)!
         let decoder = FineJSONDecoder()
         
-        do {
-            _ = try decoder.decode(B.self, from: data)
-            XCTFail("no error")
-        } catch {
-            XCTAssertTrue(error is JSONParser.Error)
-        }
+        XCTAssertThrowsError(try decoder.decode(B.self, from: data))
     }
     
     func testSDinUD() throws {

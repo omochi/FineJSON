@@ -1,7 +1,7 @@
 import Foundation
 import RichJSONParser
 
-public enum DecodingError : Swift.Error {
+public enum DecodingError : LocalizedError {
     case typeMismatch(Any.Type,
         message: String,
         codingPath: [CodingKey],
@@ -16,10 +16,8 @@ public enum DecodingError : Swift.Error {
         message: String,
         codingPath: [CodingKey],
         location: SourceLocation?)
-}
 
-extension DecodingError : CustomStringConvertible {
-    public var description: String {
+    public var errorDescription: String? {
         func codingKeyString(_ key: CodingKey) -> String {
             var d = "\(key.stringValue)"
             if let int = key.intValue {
@@ -64,6 +62,4 @@ extension DecodingError : CustomStringConvertible {
             return "decoding error: " + parts.joined(separator: ", ")
         }
     }
-    
-    
 }
