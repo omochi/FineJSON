@@ -6,8 +6,8 @@
         "repositoryURL": "https://github.com/omochi/OrderedDictionary.git",
         "state": {
           "branch": null,
-          "revision": "ff5ad8a027588a8432638fc577ccc6517a887537",
-          "version": "1.6.0"
+          "revision": "db6b28da46ad3c8508fe5ef014821201d0fe35d5",
+          "version": "1.7.0"
         }
       },
       {
@@ -15,8 +15,8 @@
         "repositoryURL": "https://github.com/omochi/RichJSONParser.git",
         "state": {
           "branch": null,
-          "revision": "1539b2a09fad1243e4ba5d1b3ed825add125f07b",
-          "version": "1.2.1"
+          "revision": "03e9149ef3ed33f0e7ec871f24c067904ad93e60",
+          "version": "1.3.0"
         }
       }
     ]
