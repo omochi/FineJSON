@@ -5,6 +5,10 @@ FineJSON provides `FineJSONEncoder` and `FineJSONDecoder` which are more useful 
 ## Index
 
 - [Features](#features)
+  - [Allowing unnecessary trailing commas](#allowing-unnecessary-trailing-commas)
+  - [Allowing comments](#allowing-comments)
+  - [Line number information in parse error](#line-number-information-in-parse-error)
+  - [Location information from decoder](#location-information-from-decoder)
   - [Keeping JSON key order](#keeping-json-key-order)
   - [Control Optional.none encoding](#control-optionalnone-encoding)
   - [Control indent width](#control-indent-width)
@@ -13,12 +17,132 @@ FineJSON provides `FineJSONEncoder` and `FineJSONDecoder` which are more useful 
   - [Handling complex JSON structure directly](#handling-complex-json-structure-directly)
   - [Customizing JSON key with keeping Codable methods auto synthesis](#customizing-json-key-with-keeping-codable-methods-auto-synthesis)
   - [Default value for absent key](#default-value-for-absent-key)
+  - [Auto location information decoding](#auto-location-information-decoding)
 - [Supported building environment](#supported-building-environment)
 - [License](#License)
 
 # Features
 
 Working code of all example code in this section are in [`FeaturesTests`][].
+
+## Allowing unnecessary trailing commas
+
+Decoder allows unnecessary trailing comma.
+
+```swift
+    struct A : Codable, Equatable {
+        var a: Int
+        var b: Int
+    }
+
+    func testAllowTrailingComma() throws {
+        let json = """
+[
+  {
+    "a": 1,
+    "b": 2,
+  },
+]
+"""
+        let decoder = FineJSONDecoder()
+        let x = try decoder.decode([A].self, from: json.data(using: .utf8)!)
+        XCTAssertEqual(x, [A(a: 1, b: 2)])
+    }
+```
+
+## Allowing comments
+
+Decoder allows comments in JSON.
+
+```swift
+    struct A : Codable, Equatable {
+        var a: Int
+        var b: Int
+    }
+
+    func testComment() throws {
+        let json = """
+[
+  // entry 1
+  {
+    "a": 10,
+    "b": 20
+/*
+    "a": 1,
+    "b": 2,
+*/
+  }
+]
+"""
+        let decoder = FineJSONDecoder()
+        let x = try decoder.decode([A].self, from: json.data(using: .utf8)!)
+        XCTAssertEqual(x, [A(a: 10, b: 20)])
+    }
+```
+
+## Line number information in parse error
+
+Parser error tells location in JSON.
+line number, column number (in byte offset), byte offset.
+
+```swift
+    struct A : Codable, Equatable {
+        var a: Int
+        var b: Int
+    }
+
+    func testParseErrorLocation() throws {
+        let json = """
+[
+  {
+    "a": 1,
+    "b": 2;
+  }
+]
+"""
+        let decoder = FineJSONDecoder()
+        do {
+            _ = try decoder.decode([A].self, from: json.data(using: .utf8)!)
+            XCTFail()
+        } catch {
+            let message = "\(error)"
+            // invalid character (";") at 4:11(28)
+            XCTAssertTrue(message.contains("4:11(28)"))
+        }
+    }
+```
+
+## Location information from decoder
+
+You can get location information from `Decoder`.
+
+```swift
+    struct B : Decodable {
+        var location: SourceLocation?
+        var name: String
+        enum CodingKeys : String, CodingKey { case name }
+        init(from decoder: Decoder) throws {
+            self.location = decoder.sourceLocation
+            let c = try decoder.container(keyedBy: CodingKeys.self)
+            self.name = try c.decode(String.self, forKey: .name)
+        }
+    }
+
+    func testDecodeLocation() throws {
+        let json = """
+// comment
+{
+  "name": "b"
+},
+"""
+        let decoder = FineJSONDecoder()
+        let x = try decoder.decode(B.self, from: json.data(using: .utf8)!)
+        XCTAssertEqual(x.location, SourceLocation(offset: 11, line: 2, columnInByte: 1))
+        XCTAssertEqual(x.name, "b")
+    }
+```
+
+See also [auto location information decoding](#auto-location-information-decoding).
 
 ## Keeping JSON key order
 
@@ -318,6 +442,34 @@ You can specify default value for property which is used when JSON key is absent
         
         XCTAssertEqual(h.name, "john")
         XCTAssertEqual(h.language, "Swift")
+    }
+```
+
+## Auto location information decoding
+
+Location information decoding can be enabled from annotation.
+
+```swift
+    func testAutoLocationDecoding() throws {
+        let json = """
+// comment
+{
+  "name": "b"
+},
+"""
+        let decoder = FineJSONDecoder()
+        let x = try decoder.decode(C.self, from: json.data(using: .utf8)!)
+        XCTAssertEqual(x.location, SourceLocation(offset: 11, line: 2, columnInByte: 1))
+        XCTAssertEqual(x.name, "b")
+        
+        let encoder = FineJSONEncoder()
+        let json2 = String(data: try encoder.encode(x), encoding: .utf8)!
+        XCTAssertEqual(json2, """
+{
+  "name": "b"
+}
+""")
+        
     }
 ```
 
