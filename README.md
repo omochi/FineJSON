@@ -487,8 +487,6 @@ Location information decoding can be enabled from annotation.
 
 MIT.
 
-It includes [yajl](https://github.com/lloyd/yajl) which has ISC license.
-
 [`FeaturesTests`]: Tests/FineJSONTests/FeaturesTests.swift
 [`CodablePrimitiveJSONDecoder`]: Sources/FineJSON/CodablePrimitiveJSONDecoder.swift
 [`JSON`]: Sources/FineJSON/JSON.swift
