@@ -1,7 +1,7 @@
 import Foundation
 import RichJSONParser
 
-public enum DecodingError : LocalizedError {
+public enum DecodingError : LocalizedError, CustomStringConvertible {
     case typeMismatch(Any.Type,
         message: String,
         codingPath: [CodingKey],
@@ -16,8 +16,10 @@ public enum DecodingError : LocalizedError {
         message: String,
         codingPath: [CodingKey],
         location: SourceLocation?)
+    
+    public var errorDescription: String? { return description }
 
-    public var errorDescription: String? {
+    public var description: String {
         func codingKeyString(_ key: CodingKey) -> String {
             var d = "\(key.stringValue)"
             if let int = key.intValue {
