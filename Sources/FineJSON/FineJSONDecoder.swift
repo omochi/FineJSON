@@ -9,11 +9,12 @@ public class FineJSONDecoder {
     
     public var primitiveDecoder : CodablePrimitiveJSONDecoder
     public var userInfo: [CodingUserInfoKey: Any]
+    public var file: URL?
     
     public func decode<T>(_ type: T.Type, from data: Data) throws -> T
         where T : Decodable
     {
-        let parser = JSONParser(data: data)
+        let parser = JSONParser(data: data, file: file)
         let json = try parser.parse()
         return try decode(type, from: json)
     }

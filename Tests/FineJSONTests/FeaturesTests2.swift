@@ -80,7 +80,7 @@ class FeaturesTests2: XCTestCase {
 """
         let decoder = FineJSONDecoder()
         let x = try decoder.decode(B.self, from: json.data(using: .utf8)!)
-        XCTAssertEqual(x.location, SourceLocation(offset: 11, line: 2, columnInByte: 1))
+        XCTAssertEqual(x.location, sloc(11, 2, 1))
         XCTAssertEqual(x.name, "b")
     }
     
@@ -102,7 +102,7 @@ class FeaturesTests2: XCTestCase {
 """
         let decoder = FineJSONDecoder()
         let x = try decoder.decode(C.self, from: json.data(using: .utf8)!)
-        XCTAssertEqual(x.location, SourceLocation(offset: 11, line: 2, columnInByte: 1))
+        XCTAssertEqual(x.location, sloc(11, 2, 1))
         XCTAssertEqual(x.name, "b")
         
         let encoder = FineJSONEncoder()
@@ -113,5 +113,20 @@ class FeaturesTests2: XCTestCase {
 }
 """)
         
+    }
+    
+    func testSourceLocationFilePath() throws {
+        let json = """
+{ invalid syntax }
+"""
+        do {
+            let decoder = FineJSONDecoder()
+            decoder.file = URL(fileURLWithPath: "resource/dir/info.json")
+            _ = try decoder.decode(Int.self, from: json.data(using: .utf8)!)
+            XCTFail("expect throw")
+        } catch {
+            let message = "\(error)"
+            XCTAssertTrue(message.contains("resource/dir/info.json"))
+        }
     }
 }
