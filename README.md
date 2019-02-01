@@ -112,6 +112,25 @@ line number, column number (in byte offset), byte offset.
     }
 ```
 
+File path also can be passed to decoder. It improves debugging experience.
+
+```
+    func testSourceLocationFilePath() throws {
+        let json = """
+{ invalid syntax }
+"""
+        do {
+            let decoder = FineJSONDecoder()
+            decoder.file = URL(fileURLWithPath: "resource/dir/info.json")
+            _ = try decoder.decode(Int.self, from: json.data(using: .utf8)!)
+            XCTFail("expect throw")
+        } catch {
+            let message = "\(error)"
+            XCTAssertTrue(message.contains("resource/dir/info.json"))
+        }
+    }
+```
+
 ## Location information from decoder
 
 You can get location information from `Decoder`.
