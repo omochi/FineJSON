@@ -1,5 +1,4 @@
 import XCTest
-import OrderedDictionary
 import RichJSONParser
 import FineJSON
 
@@ -39,12 +38,12 @@ class JSONDecodeTests: XCTestCase {
             .number("0.123456789012345678901234567890"),
             .string("aaa"),
             .array([]),
-            .object(OrderedDictionary())
+            .object(JSONDictionary())
             ]))
         XCTAssertEqual(a.c, JSONObject([
             "a": .number("0.123456789012345678901234567890")
             ]))
         XCTAssertEqual(a.d, JSON.array([]))
-        XCTAssertEqual(a.e, JSON.object(OrderedDictionary()))
+        XCTAssertEqual(a.e, JSON.object(JSONDictionary()))
     }
 }

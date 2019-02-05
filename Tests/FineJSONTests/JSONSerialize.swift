@@ -1,12 +1,11 @@
 import XCTest
-import OrderedDictionary
 import RichJSONParser
 import FineJSON
 
 class JSONSerialize: XCTestCase {
     
     func test1() throws {
-        let a = JSON.object(OrderedDictionary([
+        let a = JSON.object(JSONDictionary([
             "a": .number("1.234"),
             "b": .string("hello")
             ]))
@@ -62,11 +61,11 @@ class JSONSerialize: XCTestCase {
     }
 
     func test2() throws {
-        let a = JSON.object(OrderedDictionary([
+        let a = JSON.object(JSONDictionary([
             "a": .number("1.234"),
             "b": .string("hello"),
-            "c": .object(OrderedDictionary()),
-            "d": .object(OrderedDictionary([
+            "c": .object(JSONDictionary()),
+            "d": .object(JSONDictionary([
                 "a": .string("a")
                 ]))
             ]))

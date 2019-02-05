@@ -1,5 +1,4 @@
 import Foundation
-import OrderedDictionary
 import RichJSONParser
 
 internal class BoxedJSON {
@@ -9,7 +8,7 @@ internal class BoxedJSON {
         case number(String)
         case string(String)
         case array([BoxedJSON])
-        case object(OrderedDictionary<String, BoxedJSON>)
+        case object(JSONDictionary<BoxedJSON>)
         
         init(_ json: JSON) {
             switch json {

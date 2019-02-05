@@ -2,9 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:../Carthage/Checkouts/OrderedDictionary/xcode/OrderedDictionary.xcodeproj">
-   </FileRef>
-   <FileRef
       location = "group:../Carthage/Checkouts/RichJSONParser/xcode/RichJSONParser.xcodeproj">
    </FileRef>
    <FileRef

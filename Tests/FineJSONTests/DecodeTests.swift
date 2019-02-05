@@ -62,7 +62,7 @@ final class DecodeTests: XCTestCase {
     func testBrokenJSON() throws {
         let json = """
 {
-  "a": "aaa"
+  "a": "aaa" x
   "b": 1
 }
 """

@@ -2,21 +2,12 @@
   "object": {
     "pins": [
       {
-        "package": "OrderedDictionary",
-        "repositoryURL": "https://github.com/omochi/OrderedDictionary.git",
-        "state": {
-          "branch": null,
-          "revision": "db6b28da46ad3c8508fe5ef014821201d0fe35d5",
-          "version": "1.7.0"
-        }
-      },
-      {
         "package": "RichJSONParser",
         "repositoryURL": "https://github.com/omochi/RichJSONParser.git",
         "state": {
           "branch": null,
-          "revision": "99bd823a6f0005642fb2099857b1996498f1cdbc",
-          "version": "1.4.0"
+          "revision": "3c34466643ef2249561f0b46148b5e263ea84b47",
+          "version": "2.1.0"
         }
       }
     ]

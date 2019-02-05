@@ -54,6 +54,7 @@ internal struct SingleDC : SingleValueDecodingContainer {
             return JSONNumber(number) as! T
         } else {
             let decoder = _Decoder(json: json,
+                                   file: self.decoder.file,
                                    codingPath: self.codingPath,
                                    options: self.decoder.options,
                                    decodingType: type)

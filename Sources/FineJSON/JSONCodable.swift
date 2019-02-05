@@ -1,4 +1,3 @@
-import OrderedDictionary
 import RichJSONParser
 
 extension JSONNumber : Decodable {
@@ -72,7 +71,7 @@ extension JSONArray : Encodable {
 extension JSONObject : Decodable {
     public init(from decoder: Decoder) throws {
         let c = try decoder.singleValueContainer()
-        let value = try c.decode(OrderedDictionary<String, JSON>.self)
+        let value = try c.decode(JSONDictionary<JSON>.self)
         self.init(value)
     }
 }

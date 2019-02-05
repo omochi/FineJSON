@@ -1,5 +1,4 @@
 import Foundation
-import OrderedDictionary
 import RichJSONParser
 
 internal struct KeyedDC<Key> : KeyedDecodingContainerProtocol
@@ -7,7 +6,7 @@ internal struct KeyedDC<Key> : KeyedDecodingContainerProtocol
 {
     let decoder: _Decoder
     
-    let object: OrderedDictionary<String, ParsedJSON>
+    let object: JSONDictionary<ParsedJSON>
     
     init(decoder: _Decoder, json: ParsedJSON, keyType: Key.Type) throws {
         self.decoder = decoder
@@ -105,6 +104,7 @@ internal struct KeyedDC<Key> : KeyedDecodingContainerProtocol
         }
         
         let decoder = _Decoder(json: elem,
+                               file: self.decoder.file,
                                codingPath: codingPath,
                                options: self.decoder.options,
                                decodingType: nil)
@@ -126,7 +126,7 @@ internal struct KeyedDC<Key> : KeyedDecodingContainerProtocol
         if let ano = ano, ano.isSourceLocationKey
         {
             let loc = decoder._sourceLocation
-            return loc.encodeToJSON().toParsedJSON(dummyLocation: loc)
+            return loc.encodeToJSON().toParsedJSON(dummyLocation: loc.lite)
         }
         
         if let elem = object[jsonKey] {
@@ -135,7 +135,7 @@ internal struct KeyedDC<Key> : KeyedDecodingContainerProtocol
         
         if let ano = ano, let def = ano.defaultValue
         {
-            return def.toParsedJSON(dummyLocation: SourceLocation())
+            return def.toParsedJSON(dummyLocation: SourceLocationLite())
         }
         
         return nil

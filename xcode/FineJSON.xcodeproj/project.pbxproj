@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		D64F5F0821F7739900CA06B7 /* FeaturesTests2.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64F5F0721F7739900CA06B7 /* FeaturesTests2.swift */; };
 		D64F5F0A21F777DC00CA06B7 /* Exports.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64F5F0921F777DC00CA06B7 /* Exports.swift */; };
-		D68BB2F921E6511F00B054F1 /* OrderedDictionary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D68BB2F821E6511F00B054F1 /* OrderedDictionary.framework */; };
 		D68BB35421E7E46900B054F1 /* FineJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D68BB2E121E6507600B054F1 /* FineJSON.framework */; };
 		D69762D321F1D0F600C519F1 /* RichJSONParser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D69762D221F1D0F600C519F1 /* RichJSONParser.framework */; };
 		D6FB034221F5C706002CDE0A /* FineJSONEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FB032D21F5C705002CDE0A /* FineJSONEncoder.swift */; };
@@ -104,7 +103,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D69762D321F1D0F600C519F1 /* RichJSONParser.framework in Frameworks */,
-				D68BB2F921E6511F00B054F1 /* OrderedDictionary.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

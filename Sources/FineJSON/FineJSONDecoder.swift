@@ -14,7 +14,7 @@ public class FineJSONDecoder {
     public func decode<T>(_ type: T.Type, from data: Data) throws -> T
         where T : Decodable
     {
-        let parser = JSONParser(data: data, file: file)
+        let parser = try JSONParser(data: data, file: file)
         let json = try parser.parse()
         return try decode(type, from: json)
     }
@@ -25,6 +25,7 @@ public class FineJSONDecoder {
         let opts =  _Decoder.Options(primitiveDecoder: primitiveDecoder,
                                      userInfo: userInfo)
         let decoder = _Decoder(json: json,
+                               file: file,
                                codingPath: [],
                                options: opts,
                                decodingType: nil)
@@ -40,16 +41,19 @@ internal class _Decoder : Decoder {
     
     public let codingPath: [CodingKey]
     public let json: ParsedJSON
+    public let file: URL?
     public let options: Options
     public let decodingType: Any.Type?
     public let keyAnnotations: JSONKeyAnnotations?
 
     public init(json: ParsedJSON,
+                file: URL?,
                 codingPath: [CodingKey],
                 options: Options,
                 decodingType: Any.Type?)
     {
         self.json = json
+        self.file = file
         self.codingPath = codingPath
         self.options = options
         self.decodingType = decodingType
@@ -57,7 +61,7 @@ internal class _Decoder : Decoder {
     }
     
     public var _sourceLocation: SourceLocation {
-        return json.location
+        return json.location.with(file: file)
     }
     
     public var userInfo: [CodingUserInfoKey : Any] {

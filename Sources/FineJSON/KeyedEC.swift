@@ -1,5 +1,5 @@
 import Foundation
-import OrderedDictionary
+import RichJSONParser
 
 internal struct KeyedEC<Key> : KeyedEncodingContainerProtocol where Key : CodingKey {
     let encoder: _Encoder
@@ -7,11 +7,11 @@ internal struct KeyedEC<Key> : KeyedEncodingContainerProtocol where Key : Coding
     init(encoder: _Encoder) {
         self.encoder = encoder
         
-        value = OrderedDictionary()
+        value = JSONDictionary()
         valueDidSet()
     }
     
-    var value: OrderedDictionary<String, BoxedJSON> {
+    var value: JSONDictionary<BoxedJSON> {
         didSet {
             valueDidSet()
         }

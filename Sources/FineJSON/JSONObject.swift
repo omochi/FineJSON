@@ -1,4 +1,3 @@
-import OrderedDictionary
 import RichJSONParser
 
 public struct JSONObject {
@@ -12,18 +11,18 @@ public struct JSONObject {
         public static let `super`: Key = Key("super")
     }
     
-    public var value: OrderedDictionary<String, JSON>
+    public var value: JSONDictionary<JSON>
     
     public init() {
-        self.init(OrderedDictionary())
+        self.init(JSONDictionary())
     }
     
-    public init(_ value: OrderedDictionary<String, JSON>) {
+    public init(_ value: JSONDictionary<JSON>) {
         self.value = value
     }
     
     public init(_ keyAndValues: KeyValuePairs<String, JSON>) {
-        self.init(OrderedDictionary(keyAndValues))
+        self.init(JSONDictionary(keyAndValues))
     }
     
 }

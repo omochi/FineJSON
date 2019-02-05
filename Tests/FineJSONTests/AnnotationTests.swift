@@ -1,5 +1,4 @@
 import XCTest
-import OrderedDictionary
 import RichJSONParser
 import FineJSON
 
@@ -30,7 +29,7 @@ class AnnotationTests: XCTestCase {
         static var keyAnnotations: JSONKeyAnnotations = [
             "a": JSONKeyAnnotation(defaultValue: .number("1")),
             "b": JSONKeyAnnotation(defaultValue: .number("2")),
-            "c": JSONKeyAnnotation(defaultValue: .object(OrderedDictionary([
+            "c": JSONKeyAnnotation(defaultValue: .object(JSONDictionary([
                 "a": .number("3"),
                 "b": .number("4"),
                 ])))

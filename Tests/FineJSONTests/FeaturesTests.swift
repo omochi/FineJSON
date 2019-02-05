@@ -1,6 +1,5 @@
 import Foundation
 import XCTest
-import OrderedDictionary
 import RichJSONParser
 import FineJSON
 
@@ -155,7 +154,7 @@ class FeaturesTests: XCTestCase {
         XCTAssertEqual(f.name, "john")
         XCTAssertEqual(f.data, JSON.array([
             .string("aaa"),
-            .object(OrderedDictionary([
+            .object(JSONDictionary([
                 "bbb": .string("ccc")
                 ]))
             ]))

@@ -79,6 +79,7 @@ internal struct UnkeyedDC : UnkeyedDecodingContainer {
         let elem = array[currentIndex]
         currentIndex += 1
         let decoder = _Decoder(json: elem,
+                               file: self.decoder.file,
                                codingPath: codingPath,
                                options: self.decoder.options,
                                decodingType: nil)
