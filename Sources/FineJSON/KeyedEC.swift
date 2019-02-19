@@ -7,7 +7,12 @@ internal struct KeyedEC<Key> : KeyedEncodingContainerProtocol where Key : Coding
     init(encoder: _Encoder) {
         self.encoder = encoder
         
-        value = JSONDictionary()
+        if case .object(let value) = encoder.box.value {
+            self.value = value
+        } else {
+            self.value = JSONDictionary()
+        }
+        
         valueDidSet()
     }
     

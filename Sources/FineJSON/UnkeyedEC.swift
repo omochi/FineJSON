@@ -6,7 +6,12 @@ internal struct UnkeyedEC : UnkeyedEncodingContainer {
     init(encoder: _Encoder) {
         self.encoder = encoder
         
-        self.value = []
+        if case .array(let value) = encoder.box.value {
+            self.value = value
+        } else {
+            self.value = []
+        }
+        
         valueDidSet()
     }
     
