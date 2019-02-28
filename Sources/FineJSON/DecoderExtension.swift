@@ -9,3 +9,17 @@ extension Decoder {
         return d._sourceLocation
     }
 }
+
+extension SingleValueDecodingContainer {
+    public func decodeFixedArray<T: Decodable>(_ elementType: T.Type, count: Int,
+                                               sourceLocation: @autoclosure () -> SourceLocation? = nil)
+        throws -> [T]
+    {
+        let array = try decode(Array<T>.self)
+        guard array.count >= count else {
+            throw DecodingError.outOfRange(codingPath: codingPath,
+                                           location: sourceLocation())
+        }
+        return array
+    }
+}
