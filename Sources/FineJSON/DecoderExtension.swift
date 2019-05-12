@@ -8,6 +8,13 @@ extension Decoder {
         }
         return d._sourceLocation
     }
+    
+    public var json: ParsedJSON? {
+        guard let d = self as? _Decoder else {
+            return nil
+        }
+        return d._json
+    }
 }
 
 extension SingleValueDecodingContainer {

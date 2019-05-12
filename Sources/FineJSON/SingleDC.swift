@@ -5,7 +5,7 @@ internal struct SingleDC : SingleValueDecodingContainer {
     let decoder: _Decoder
     
     var json: ParsedJSON {
-        return decoder.json
+        return decoder._json
     }
     
     init(decoder: _Decoder, json: ParsedJSON) {

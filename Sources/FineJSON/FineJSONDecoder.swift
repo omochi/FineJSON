@@ -40,7 +40,6 @@ internal class _Decoder : Decoder {
     }
     
     public let codingPath: [CodingKey]
-    public let json: ParsedJSON
     public let file: URL?
     public let options: Options
     public let decodingType: Any.Type?
@@ -52,7 +51,7 @@ internal class _Decoder : Decoder {
                 options: Options,
                 decodingType: Any.Type?)
     {
-        self.json = json
+        self._json = json
         self.file = file
         self.codingPath = codingPath
         self.options = options
@@ -61,8 +60,10 @@ internal class _Decoder : Decoder {
     }
     
     public var _sourceLocation: SourceLocation {
-        return json.location.with(file: file)
+        return _json.location.with(file: file)
     }
+    
+    public let _json: ParsedJSON
     
     public var userInfo: [CodingUserInfoKey : Any] {
          return options.userInfo
@@ -71,16 +72,16 @@ internal class _Decoder : Decoder {
     public func container<Key>(keyedBy type: Key.Type) throws -> KeyedDecodingContainer<Key>
         where Key : CodingKey
     {
-        let c = try KeyedDC(decoder: self, json: json, keyType: type)
+        let c = try KeyedDC(decoder: self, json: _json, keyType: type)
         return KeyedDecodingContainer<Key>(c)
     }
     
     public func unkeyedContainer() throws -> UnkeyedDecodingContainer {
-        return try UnkeyedDC(decoder: self, json: json)
+        return try UnkeyedDC(decoder: self, json: _json)
     }
     
     public func singleValueContainer() -> SingleValueDecodingContainer {
-        return SingleDC(decoder: self, json: json)
+        return SingleDC(decoder: self, json: _json)
     }
 }
 
