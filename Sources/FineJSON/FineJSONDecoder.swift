@@ -14,7 +14,7 @@ public class FineJSONDecoder {
     public func decode<T>(_ type: T.Type, from data: Data) throws -> T
         where T : Decodable
     {
-        let parser = try JSONParser(data: data, file: file)
+        let parser = FastJSONParser(data: data, file: file)
         let json = try parser.parse()
         return try decode(type, from: json)
     }
