@@ -30,3 +30,12 @@ extension SingleValueDecodingContainer {
         return array
     }
 }
+
+extension KeyedDecodingContainerProtocol {
+    public var sourceLocation: SourceLocation? {
+        guard let c = self as? KeyedDC<Key> else {
+            return nil
+        }
+        return c.decoder._sourceLocation
+    }
+}
