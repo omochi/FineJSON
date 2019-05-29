@@ -1,5 +1,4 @@
-// swift-tools-version:4.2
-// The swift-tools-version declares the minimum version of Swift required to build this package.
+// swift-tools-version:5.0
 
 import PackageDescription
 
@@ -9,7 +8,7 @@ let package = Package(
         .library(name: "FineJSON", targets: ["FineJSON"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/omochi/RichJSONParser.git", .upToNextMajor(from: "2.3.1")),
+        .package(url: "https://github.com/omochi/RichJSONParser.git", from: "3.0.0"),
     ],
     targets: [
         .target(name: "FineJSON", dependencies: ["RichJSONParser"]),
