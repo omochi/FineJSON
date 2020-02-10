@@ -19,6 +19,8 @@ FineJSON provides `FineJSONEncoder` and `FineJSONDecoder` which are more useful 
   - [Default value for absent key](#default-value-for-absent-key)
   - [Auto location information decoding](#auto-location-information-decoding)
 - [Supported building environment](#supported-building-environment)
+- [Cautions](#cautions)
+  - [Coding for `URL`, `Date`]
 - [License](#License)
 
 # Features
@@ -501,6 +503,15 @@ Location information decoding can be enabled from annotation.
 - Manual xcworkspace for mac, iOS.
   This is my favorite. 
   [Detail is here](https://qiita.com/omochimetaru/items/3a8441be9152ea6619b6)
+
+# Cautions
+
+## Coding for `URL`, `Date`
+
+- This library serializes `URL` as not string but object in JSON.
+  It differ from `Foundation.JSONEncoder`, `.JSONDecoder`.
+  Bacause this library uses native coding definition for these types.
+  `Foundation` coders serialize them as string by following their internal custom coding logics.
 
 # License
 
