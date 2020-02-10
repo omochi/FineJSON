@@ -20,7 +20,7 @@ FineJSON provides `FineJSONEncoder` and `FineJSONDecoder` which are more useful 
   - [Auto location information decoding](#auto-location-information-decoding)
 - [Supported building environment](#supported-building-environment)
 - [Cautions](#cautions)
-  - [Coding for `URL`, `Date`]
+  - [Coding for `URL`, `Date`](#coding-for-url-date)
 - [License](#License)
 
 # Features
@@ -508,10 +508,10 @@ Location information decoding can be enabled from annotation.
 
 ## Coding for `URL`, `Date`
 
-- This library serializes `URL` as not string but object in JSON.
-  It differ from `Foundation.JSONEncoder`, `.JSONDecoder`.
-  Bacause this library uses native coding definition for these types.
-  `Foundation` coders serialize them as string by following their internal custom coding logics.
+This library serializes `URL` as not string but object in JSON.
+It differ from `Foundation.JSONEncoder`, `.JSONDecoder`.
+Bacause this library uses native coding definition for these types.
+`Foundation` coders serialize them as string by following their internal custom coding logics.
 
 # License
 
