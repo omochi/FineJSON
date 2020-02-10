@@ -4,5 +4,6 @@
 /*.xcodeproj
 /Carthage
 xcuserdata
+/.swiftpm
 
 
